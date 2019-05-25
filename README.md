@@ -1,12 +1,14 @@
-#RCG
+# RCG
 
 A Node.js library and CLI for generating React components.
 
+[![CircleCI](https://circleci.com/gh/anephenix/rcg.svg?style=shield)](https://circleci.com/gh/anephenix/rcg)
+
 ### Features
 
-- Generates a React component based on a given name
-- Creates the component and accompanying files and folders
-- Takes time out of generating files and folders for React components
+-   Generates a React component based on a given name
+-   Creates the component and accompanying files and folders
+-   Takes time out of generating files and folders for React components
 
 ### Install
 
@@ -28,8 +30,8 @@ npx rcg MyComponent
 
 This will do the following:
 
-- Create a folder called 'my-component' in the src/components folder
-- Inside that folder, it will create these files:
-  - A React component file called MyComponent.js
-  - A styling file called MyComponent.scss
-  - A test file called MyComponent.test.js
+-   Create a folder called 'my-component' in the src/components folder
+-   Inside that folder, it will create these files:
+    -   A React component file called MyComponent.js
+    -   A styling file called MyComponent.scss
+    -   A test file called MyComponent.test.js
