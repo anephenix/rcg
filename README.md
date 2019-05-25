@@ -3,6 +3,7 @@
 A Node.js library and CLI for generating React components.
 
 [![CircleCI](https://circleci.com/gh/anephenix/rcg.svg?style=shield)](https://circleci.com/gh/anephenix/rcg)
+[![Coverage Status](https://coveralls.io/repos/github/anephenix/rcg/badge.svg?branch=master)](https://coveralls.io/github/anephenix/rcg?branch=master)
 
 ### Features
 
