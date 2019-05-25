@@ -1,0 +1,34 @@
+{
+    "name": "rcg",
+    "version": "0.0.1",
+    "description": "React Component Generator",
+    "main": "index.js",
+    "scripts": {
+        "lint": "npx eslint .",
+        "cover": "jest --coverage --coverageReporters=text-lcov | coveralls",
+        "test": "jest --coverage"
+    },
+    "keywords": [
+        "React",
+        "Component",
+        "Generator"
+    ],
+    "author": "Paul Jensen <paul@anephenix.com>",
+    "license": "MIT",
+    "pre-commit": [
+        "lint",
+        "test"
+    ],
+    "devDependencies": {
+        "coveralls": "^3.0.3",
+        "eslint": "^5.16.0",
+        "eslint-plugin-jest": "^22.6.4",
+        "jest": "^24.8.0",
+        "jsdoc": "^3.6.2",
+        "pre-commit": "^1.2.2",
+        "prettier": "1.17.1"
+    },
+    "dependencies": {
+        "to-case": "^2.0.0"
+    }
+}

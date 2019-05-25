@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+// NPM Dependencies
+const path = require('path');
+
+// File Dependencies
+const generateComponent = require('../lib/generateComponent');
+
+// Parameter arguments
+/* TODO - can you guarantee that this will work each time */
+const componentName = process.argv[2];
+const srcFolderPath = path.join(process.cwd(), 'src', 'components');
+
+// Run the command
+(async () => {
+	await generateComponent(componentName, srcFolderPath);
+})();
