@@ -1,5 +1,5 @@
 {
-    "name": "rcg",
+    "name": "@anephenix/rcg",
     "version": "0.0.1",
     "description": "React Component Generator",
     "main": "index.js",
@@ -13,6 +13,7 @@
         "Component",
         "Generator"
     ],
+    "bin": "./bin/rcg",
     "author": "Paul Jensen <paul@anephenix.com>",
     "license": "MIT",
     "pre-commit": [
@@ -29,6 +30,7 @@
         "prettier": "1.17.1"
     },
     "dependencies": {
+        "commander": "^2.20.0",
         "to-case": "^2.0.0"
     }
 }

@@ -2,16 +2,18 @@
 
 // NPM Dependencies
 const path = require('path');
+const program = require('commander');
 
 // File Dependencies
-const generateComponent = require('../lib/generateComponent');
+const generateComponent = require('../index');
 
 // Parameter arguments
-/* TODO - can you guarantee that this will work each time */
-const componentName = process.argv[2];
-const srcFolderPath = path.join(process.cwd(), 'src', 'components');
+
+program.action(async () => {
+	const componentName = program.args[0];
+	const srcFolderPath = path.join(process.cwd(), 'src', 'components');
+	await generateComponent(componentName, srcFolderPath);
+});
 
 // Run the command
-(async () => {
-	await generateComponent(componentName, srcFolderPath);
-})();
+program.parse(process.argv);

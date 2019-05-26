@@ -20,14 +20,14 @@ npm i @anephenix/rcg
 
 ### Usage
 
-There are 2 ways that you can use RCG - as a command in your terminal, or as a library in your Node.js code.
+There are 2 ways that you can use RCG - via CLI, or as an NPM module in your Node.js code.
 
-#### CLI
+#### via CLI
 
-After you have installed rcg, you can call it with npx
+After you have installed rcg, cd into your react app, and run this:
 
 ```
-npx rcg MyComponent
+rcg MyComponent
 ```
 
 This will do the following:
@@ -37,3 +37,29 @@ This will do the following:
     -   A React component file called MyComponent.js
     -   A styling file called MyComponent.scss
     -   A test file called MyComponent.test.js
+
+#### via NPM
+
+You can load it this way:
+
+```javascript
+const path = require('path');
+const rcg = require('@anephenix/rcg');
+
+const componentName = 'MyComponent';
+const srcFolderPath = path.join(process.cwd(), 'src', 'components');
+
+(async () => {
+    await rcg(componentName, srcFolderPath);
+})();
+```
+
+### Running Tests
+
+```
+npm t
+```
+
+### License and Credits
+
+&copy; 2019 Anephenix OÜ. RCG is licensed under the MIT License.
