@@ -24,10 +24,10 @@ There are 2 ways that you can use RCG - via CLI, or as an NPM module in your Nod
 
 #### via CLI
 
-After you have installed rcg, cd into your react app, and run this:
+After you have installed rcg, cd into your React app, and run this:
 
 ```
-rcg MyComponent
+npx rcg MyComponent
 ```
 
 This will do the following:

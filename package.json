@@ -1,6 +1,6 @@
 {
     "name": "@anephenix/rcg",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "React Component Generator",
     "main": "index.js",
     "scripts": {
