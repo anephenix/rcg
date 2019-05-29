@@ -13,6 +13,13 @@ const {
 } = require('../../../lib/generators');
 const { exists, readFile, unlink, mkdir, rmdir } = require('../../../helpers');
 
+const checkAndRemove = async (folderPath, filePath) => {
+	const fileExists = await exists(filePath);
+	if (fileExists) await unlink(filePath);
+	const folderExists = await exists(folderPath);
+	if (folderExists) await rmdir(folderPath);
+};
+
 describe('createFile', () => {
 	const fileName = 'my-example-file.txt';
 	const folderPath = process.cwd();
@@ -84,19 +91,9 @@ describe('generateComponentFile', () => {
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.js`);
-	beforeEach(async () => {
-		const fileExists = await exists(filePath);
-		if (fileExists) await unlink(filePath);
-		const folderExists = await exists(folderPath);
-		if (folderExists) await rmdir(folderPath);
-	});
 
-	afterEach(async () => {
-		const fileExists = await exists(filePath);
-		if (fileExists) await unlink(filePath);
-		const folderExists = await exists(folderPath);
-		if (folderExists) await rmdir(folderPath);
-	});
+	beforeEach(async () => await checkAndRemove(folderPath, filePath));
+	afterEach(async () => await checkAndRemove(folderPath, filePath));
 
 	it('should create the file for the React Component, based on the name', async () => {
 		await mkdir(folderPath);
@@ -118,19 +115,9 @@ describe('generateTestFile', () => {
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.test.js`);
-	beforeEach(async () => {
-		const fileExists = await exists(filePath);
-		if (fileExists) await unlink(filePath);
-		const folderExists = await exists(folderPath);
-		if (folderExists) await rmdir(folderPath);
-	});
 
-	afterEach(async () => {
-		const fileExists = await exists(filePath);
-		if (fileExists) await unlink(filePath);
-		const folderExists = await exists(folderPath);
-		if (folderExists) await rmdir(folderPath);
-	});
+	beforeEach(async () => await checkAndRemove(folderPath, filePath));
+	afterEach(async () => await checkAndRemove(folderPath, filePath));
 
 	it('should create the test file, based on the name of the component', async () => {
 		await mkdir(folderPath);
@@ -149,19 +136,9 @@ describe('generateStyleFile', () => {
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.scss`);
-	beforeEach(async () => {
-		const fileExists = await exists(filePath);
-		if (fileExists) await unlink(filePath);
-		const folderExists = await exists(folderPath);
-		if (folderExists) await rmdir(folderPath);
-	});
 
-	afterEach(async () => {
-		const fileExists = await exists(filePath);
-		if (fileExists) await unlink(filePath);
-		const folderExists = await exists(folderPath);
-		if (folderExists) await rmdir(folderPath);
-	});
+	beforeEach(async () => await checkAndRemove(folderPath, filePath));
+	afterEach(async () => await checkAndRemove(folderPath, filePath));
 
 	it('should create the style file, based on the name of the component', async () => {
 		await mkdir(folderPath);
