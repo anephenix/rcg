@@ -11,7 +11,7 @@ describe('generateComponent', () => {
 	const srcFolderPath = process.cwd();
 	const folderPath = path.join(process.cwd(), folderName);
 
-	beforeEach(async () => {
+	const cleanup = async () => {
 		const folderExists = await exists(folderPath);
 		if (!folderExists) return;
 		const files = await readdir(folderPath);
@@ -19,16 +19,14 @@ describe('generateComponent', () => {
 			await unlink(path.join(folderPath, file));
 		}
 		await rmdir(folderPath);
+	};
+
+	beforeEach(async () => {
+		await cleanup();
 	});
 
 	afterEach(async () => {
-		const folderExists = await exists(folderPath);
-		if (!folderExists) return;
-		const files = await readdir(folderPath);
-		for (const file of files) {
-			await unlink(path.join(folderPath, file));
-		}
-		await rmdir(folderPath);
+		await cleanup();
 	});
 
 	it('should generate a boilerplate for a react component, given a name and a containing folder', async () => {
