@@ -4,7 +4,7 @@ const path = require('path');
 
 // File Dependencies
 const { generateComponentFiles } = require('../../lib');
-const { exists, unlink, rmdir, readdir } = require('../../helpers');
+const { exists, cleanup } = require('../../helpers');
 
 describe('generateComponentFiles', () => {
 	const title = 'MyTestComponent';
@@ -13,23 +13,11 @@ describe('generateComponentFiles', () => {
 	const folderPath = path.join(process.cwd(), folderName);
 
 	beforeEach(async () => {
-		const folderExists = await exists(folderPath);
-		if (!folderExists) return;
-		const files = await readdir(folderPath);
-		for (const file of files) {
-			await unlink(path.join(folderPath, file));
-		}
-		await rmdir(folderPath);
+		await cleanup(folderPath);
 	});
 
 	afterEach(async () => {
-		const folderExists = await exists(folderPath);
-		if (!folderExists) return;
-		const files = await readdir(folderPath);
-		for (const file of files) {
-			await unlink(path.join(folderPath, file));
-		}
-		await rmdir(folderPath);
+		await cleanup(folderPath);
 	});
 
 	it('should create a containing folder and a set of files for a React component', async () => {

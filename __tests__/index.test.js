@@ -3,7 +3,7 @@ const path = require('path');
 
 // File Dependencies
 const generateComponent = require('../index');
-const { exists, unlink, rmdir, readdir } = require('../helpers');
+const { exists, cleanup } = require('../helpers');
 
 describe('generateComponent', () => {
 	const title = 'MyTestComponent';
@@ -11,22 +11,12 @@ describe('generateComponent', () => {
 	const srcFolderPath = process.cwd();
 	const folderPath = path.join(process.cwd(), folderName);
 
-	const cleanup = async () => {
-		const folderExists = await exists(folderPath);
-		if (!folderExists) return;
-		const files = await readdir(folderPath);
-		for (const file of files) {
-			await unlink(path.join(folderPath, file));
-		}
-		await rmdir(folderPath);
-	};
-
 	beforeEach(async () => {
-		await cleanup();
+		await cleanup(folderPath);
 	});
 
 	afterEach(async () => {
-		await cleanup();
+		await cleanup(folderPath);
 	});
 
 	it('should generate a boilerplate for a react component, given a name and a containing folder', async () => {
