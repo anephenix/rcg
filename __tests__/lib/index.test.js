@@ -1,15 +1,10 @@
+// NPM Dependencies
 const assert = require('assert');
-const fs = require('fs');
 const path = require('path');
-const util = require('util');
 
-// Promisified functions
-const exists = util.promisify(fs.exists);
-const readdir = util.promisify(fs.readdir);
-const unlink = util.promisify(fs.unlink);
-const rmdir = util.promisify(fs.rmdir);
 // File Dependencies
 const { generateComponentFiles } = require('../../lib');
+const { exists, unlink, rmdir, readdir } = require('../../helpers');
 
 describe('generateComponentFiles', () => {
 	const title = 'MyTestComponent';

@@ -1,15 +1,9 @@
 const assert = require('assert');
-const fs = require('fs');
 const path = require('path');
-const util = require('util');
 
-// Promisified functions
-const exists = util.promisify(fs.exists);
-const readdir = util.promisify(fs.readdir);
-const unlink = util.promisify(fs.unlink);
-const rmdir = util.promisify(fs.rmdir);
 // File Dependencies
 const generateComponent = require('../index');
+const { exists, unlink, rmdir, readdir } = require('../helpers');
 
 describe('generateComponent', () => {
 	const title = 'MyTestComponent';

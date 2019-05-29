@@ -1,16 +1,6 @@
 // NPM Dependencies
 const assert = require('assert');
-const fs = require('fs');
 const path = require('path');
-const util = require('util');
-
-// Promisified functions
-const exists = util.promisify(fs.exists);
-const readFile = util.promisify(fs.readFile);
-const unlink = util.promisify(fs.unlink);
-const mkdir = util.promisify(fs.mkdir);
-const rmdir = util.promisify(fs.rmdir);
-
 // File Dependencies
 const {
 	createFile,
@@ -21,6 +11,7 @@ const {
 	generateTestFile,
 	generateStyleFile
 } = require('../../../lib/generators');
+const { exists, readFile, unlink, mkdir, rmdir } = require('../../../helpers');
 
 describe('createFile', () => {
 	const fileName = 'my-example-file.txt';

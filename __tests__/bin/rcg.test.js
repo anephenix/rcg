@@ -2,17 +2,10 @@
 
 // NPM Dependencies
 const assert = require('assert');
-const childProcess = require('child_process');
-const util = require('util');
 const path = require('path');
-const fs = require('fs');
-
-// Promisified functions
-const exec = util.promisify(childProcess.exec);
-const exists = util.promisify(fs.exists);
-const readdir = util.promisify(fs.readdir);
 
 // File Dependencies
+const { exists, readdir, exec } = require('../../helpers');
 const { version } = require('../../package.json');
 
 const seed = async dirs => {
