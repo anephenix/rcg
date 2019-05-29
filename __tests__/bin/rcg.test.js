@@ -15,6 +15,14 @@ const readdir = util.promisify(fs.readdir);
 // File Dependencies
 const { version } = require('../../package.json');
 
+const seed = async dirs => {
+	return await exec(`mkdir -p ${path.join(process.cwd(), ...dirs)}`);
+};
+
+const cleanup = async dir => {
+	return await exec(`rm -rf ${path.join(process.cwd(), dir)}`);
+};
+
 describe('rcg binary', () => {
 	describe('default', () => {
 		const title = 'MyTestComponent';
@@ -26,17 +34,8 @@ describe('rcg binary', () => {
 			folderName
 		);
 
-		const seed = async () => {
-			return await exec(
-				`mkdir -p ${path.join(process.cwd(), 'src', 'components')}`
-			);
-		};
-
-		const cleanup = async () => {
-			return await exec(`rm -rf ${path.join(process.cwd(), 'src')}`);
-		};
-		beforeEach(async () => await seed());
-		afterEach(async () => await cleanup());
+		beforeEach(async () => await seed(['src', 'components']));
+		afterEach(async () => await cleanup('src'));
 
 		it('should create a component with a given name in the src/components directory', async () => {
 			const command = `./bin/rcg ${title}`;
@@ -69,17 +68,8 @@ describe('rcg binary', () => {
 		const directory = 'pages';
 		const folderPath = path.join(process.cwd(), directory, folderName);
 
-		const seed = async () => {
-			return await exec(
-				`mkdir -p ${path.join(process.cwd(), directory)}`
-			);
-		};
-
-		const cleanup = async () => {
-			return await exec(`rm -rf ${path.join(process.cwd(), directory)}`);
-		};
-		beforeEach(async () => await seed());
-		afterEach(async () => await cleanup());
+		beforeEach(async () => await seed([directory]));
+		afterEach(async () => await cleanup(directory));
 
 		it('should create a component at the specified directory', async () => {
 			const command = `./bin/rcg ${title} --directory ${directory}`;
