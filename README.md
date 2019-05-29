@@ -38,6 +38,14 @@ This will do the following:
     -   A styling file called MyComponent.scss
     -   A test file called MyComponent.test.js
 
+You can also generate the component in a different folder:
+
+```
+npx rcg LoginPage --directory pages
+```
+
+This will generate a folder called 'login-page' in the pages folder, such as for a Next.js app.
+
 #### via NPM
 
 You can load it this way:
