@@ -8,13 +8,25 @@ const program = require('commander');
 const generateComponent = require('../index');
 const packageJson = require('../package.json');
 
-// Parameter arguments
+const parseDirectory = directory => {
+	return path.resolve(process.cwd(), directory);
+};
 
-program.version(packageJson.version).action(async () => {
+const mainAction = async () => {
 	const componentName = program.args[0];
-	const srcFolderPath = path.join(process.cwd(), 'src', 'components');
+	const defaultSrcFolderPath = path.join(process.cwd(), 'src', 'components');
+	const srcFolderPath = program.directory || defaultSrcFolderPath;
 	await generateComponent(componentName, srcFolderPath);
-});
+};
+
+program
+	.version(packageJson.version)
+	.option(
+		'-d, --directory <n>',
+		'The directory to put the component in',
+		parseDirectory
+	)
+	.action(mainAction);
 
 // Run the command
 program.parse(process.argv);
