@@ -64,6 +64,39 @@ describe('rcg binary', () => {
 		});
 	});
 	describe('--directory', () => {
-		it.todo('should create a component at the specified directory');
+		const title = 'MyTestComponent';
+		const folderName = 'my-test-component';
+		const directory = 'pages';
+		const folderPath = path.join(process.cwd(), directory, folderName);
+
+		const seed = async () => {
+			return await exec(
+				`mkdir -p ${path.join(process.cwd(), directory)}`
+			);
+		};
+
+		const cleanup = async () => {
+			return await exec(`rm -rf ${path.join(process.cwd(), directory)}`);
+		};
+		beforeEach(async () => await seed());
+		afterEach(async () => await cleanup());
+
+		it('should create a component at the specified directory', async () => {
+			const command = `./bin/rcg ${title} --directory ${directory}`;
+			const { stdout, stderr } = await exec(command);
+			assert.equal(stdout, '');
+			assert.equal(stderr, '');
+			const folderExists = await exists(folderPath);
+			assert(folderExists);
+			const files = await readdir(folderPath);
+			const expectedFiles = [
+				`${title}.js`,
+				`${title}.test.js`,
+				`${title}.scss`
+			];
+			for (const file of expectedFiles) {
+				assert(files.indexOf(file) !== -1);
+			}
+		});
 	});
 });

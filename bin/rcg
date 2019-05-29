@@ -22,7 +22,7 @@ const mainAction = async () => {
 program
 	.version(packageJson.version)
 	.option(
-		'-d, --directory <n>',
+		'-d, --directory <dir>',
 		'The directory to put the component in',
 		parseDirectory
 	)
