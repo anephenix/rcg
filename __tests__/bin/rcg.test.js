@@ -5,7 +5,7 @@ const assert = require('assert');
 const path = require('path');
 
 // File Dependencies
-const { exists, readdir, exec } = require('../../helpers');
+const { exists, readdir, exec } = require('../helpers');
 const { version } = require('../../package.json');
 
 const seed = async dirs => {

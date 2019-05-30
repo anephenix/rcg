@@ -3,7 +3,7 @@ const path = require('path');
 
 // File Dependencies
 const generateComponent = require('../index');
-const { exists, cleanup } = require('../helpers');
+const { exists, cleanup } = require('./helpers');
 
 describe('generateComponent', () => {
 	const title = 'MyTestComponent';

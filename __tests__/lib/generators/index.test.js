@@ -11,7 +11,12 @@ const {
 	generateTestFile,
 	generateStyleFile
 } = require('../../../lib/generators');
-const { exists, readFile, unlink, mkdir, rmdir } = require('../../../helpers');
+const { exists, readFile, unlink, mkdir, rmdir } = require('../../helpers');
+const {
+	expectedComponentContent,
+	expectedSASSContent,
+	expectedTestContent
+} = require('../../data');
 
 const checkAndRemove = async (folderPath, filePath) => {
 	const fileExists = await exists(filePath);
@@ -47,42 +52,29 @@ describe('createFile', () => {
 
 describe('getFileContentForComponent', () => {
 	it('should return the file content for a React component', () => {
-		const expectedContent = `
-import './MyTestComponent.scss';
-
-const MyTestComponent = () => (<div id='my-test-component' />);
-			
-export default MyTestComponent;`;
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		assert.equal(
 			getFileContentForComponent(title, folderName),
-			expectedContent
+			expectedComponentContent
 		);
 	});
 });
 
 describe('getFileContentForStyleFile', () => {
 	it('should return the file content for a SASS file', () => {
-		const expectedContent = `
-#my-test-component {
-	// TODO - put styling information here
-}`;
 		const folderName = 'my-test-component';
-		assert.equal(getFileContentForStyleFile(folderName), expectedContent);
+		assert.equal(
+			getFileContentForStyleFile(folderName),
+			expectedSASSContent
+		);
 	});
 });
 
 describe('getFileContentForTestFile', () => {
 	it('should return the file content for a test file for the React component', () => {
-		const expectedContent = `
-import MyTestComponent from './MyTestComponent';
-
-describe('MyTestComponent', () => {
-	it('should do something');
-});`;
 		const title = 'MyTestComponent';
-		assert.equal(getFileContentForTestFile(title), expectedContent);
+		assert.equal(getFileContentForTestFile(title), expectedTestContent);
 	});
 });
 

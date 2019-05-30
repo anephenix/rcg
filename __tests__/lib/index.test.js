@@ -4,7 +4,7 @@ const path = require('path');
 
 // File Dependencies
 const { generateComponentFiles } = require('../../lib');
-const { exists, cleanup } = require('../../helpers');
+const { exists, cleanup } = require('../helpers');
 
 describe('generateComponentFiles', () => {
 	const title = 'MyTestComponent';
