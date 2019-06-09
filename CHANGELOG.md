@@ -1,5 +1,11 @@
 # CHANGELOG
 
+### 0.0.4 - Sunday 9th June, 2019
+
+-   Added a way to specify custom DOM to insert into the React Component
+-   Added a way to specify custom CSS to insert into the SASS file for the React Component
+-   Added suport to do both of these things via the command line.
+
 ### 0.0.3 - Wednesday 29th May, 2019
 
 -   Added a command-line option to print the version of the package
