@@ -16,16 +16,23 @@ const mainAction = async () => {
 	const componentName = program.args[0];
 	const defaultSrcFolderPath = path.join(process.cwd(), 'src', 'components');
 	const srcFolderPath = program.directory || defaultSrcFolderPath;
-	await generateComponent(componentName, srcFolderPath);
+	const customDOM = program.dom || null;
+	const customCSS = program.css || null;
+	await generateComponent(componentName, srcFolderPath, customDOM, customCSS);
 };
 
 program
 	.version(packageJson.version)
 	.option(
-		'-d, --directory <dir>',
+		'-f, --directory <dir>',
 		'The directory to put the component in',
 		parseDirectory
 	)
+	.option(
+		'-d, --dom <html>',
+		'custom DOM content to embed into the component'
+	)
+	.option('-c, --css <css>', 'custom CSS content for the component')
 	.action(mainAction);
 
 // Run the command

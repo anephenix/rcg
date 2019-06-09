@@ -48,6 +48,18 @@ npx rcg LoginPage --directory pages
 
 This will generate a folder called 'login-page' in the pages folder, such as for a Next.js app.
 
+To add custom DOM to insert into the React component, you can pass the `--dom` flag:
+
+```
+npx rcg NavBar --dom="<div id='logo'>Logo here</div>"
+```
+
+To add custom CSS to insert into the SASS file for the component, you can pass the `--css` flag:
+
+```
+npx rcg NavBar --css="#logo { color: #ffcc00;}"
+```
+
 #### via NPM
 
 You can load it this way:
@@ -61,6 +73,23 @@ const srcFolderPath = path.join(process.cwd(), 'src', 'components');
 
 (async () => {
     await rcg(componentName, srcFolderPath);
+})();
+```
+
+If you want the React component to include custom DOM and/or the SASS file to include custom CSS, you can also pass these parameters:
+
+```javascript
+const path = require('path');
+const rcg = require('@anephenix/rcg');
+
+const componentName = 'MyComponent';
+const srcFolderPath = path.join(process.cwd(), 'src', 'components');
+
+const customDOM = '<p>Hello</p>';
+const customCSS = 'p { color: red; } ';
+
+(async () => {
+    await rcg(componentName, srcFolderPath, customDOM, customCSS);
 })();
 ```
 
