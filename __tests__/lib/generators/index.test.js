@@ -14,6 +14,7 @@ const {
 const { exists, readFile, unlink, mkdir, rmdir } = require('../../helpers');
 const {
 	expectedComponentContent,
+	expectedComponentContentWithDom,
 	expectedSASSContent,
 	expectedTestContent
 } = require('../../data');
@@ -57,6 +58,16 @@ describe('getFileContentForComponent', () => {
 		assert.equal(
 			getFileContentForComponent(title, folderName),
 			expectedComponentContent
+		);
+	});
+
+	it('should allow for custom html to be passed into the component', () => {
+		const title = 'MyTestComponent';
+		const folderName = 'my-test-component';
+		const customDOM = '<div>Welcome here</div>';
+		assert.equal(
+			getFileContentForComponent(title, folderName, customDOM),
+			expectedComponentContentWithDom(customDOM)
 		);
 	});
 });
