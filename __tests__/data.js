@@ -3,6 +3,11 @@ const expectedSASSContent = `
 	// TODO - put styling information here
 }`;
 
+const expectedSASSContentWithCustomCSS = customCSS => `
+#my-test-component {
+	${customCSS}
+}`;
+
 const expectedComponentContentWithDom = customDom => {
 	return `
 import './MyTestComponent.scss';
@@ -28,6 +33,7 @@ describe('MyTestComponent', () => {
 
 module.exports = {
 	expectedSASSContent,
+	expectedSASSContentWithCustomCSS,
 	expectedComponentContent,
 	expectedComponentContentWithDom,
 	expectedTestContent

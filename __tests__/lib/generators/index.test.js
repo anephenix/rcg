@@ -16,6 +16,7 @@ const {
 	expectedComponentContent,
 	expectedComponentContentWithDom,
 	expectedSASSContent,
+	expectedSASSContentWithCustomCSS,
 	expectedTestContent
 } = require('../../data');
 
@@ -78,6 +79,15 @@ describe('getFileContentForStyleFile', () => {
 		assert.equal(
 			getFileContentForStyleFile(folderName),
 			expectedSASSContent
+		);
+	});
+
+	it('should allow for custom CSS to be passed into the file content for a SASS file', () => {
+		const folderName = 'my-test-component';
+		const customCSS = 'p { color: red; }';
+		assert.equal(
+			getFileContentForStyleFile(folderName, customCSS),
+			expectedSASSContentWithCustomCSS(customCSS)
 		);
 	});
 });
