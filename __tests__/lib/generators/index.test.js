@@ -104,6 +104,7 @@ describe('generateComponentFile', () => {
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.js`);
+	const customDOM = '<div>Welcome here</div>';
 
 	beforeEach(async () => await checkAndRemove(folderPath, filePath));
 	afterEach(async () => await checkAndRemove(folderPath, filePath));
@@ -118,6 +119,25 @@ describe('generateComponentFile', () => {
 		const fileContent = await readFile(filePath);
 		assert.equal(
 			getFileContentForComponent(title, folderName),
+			fileContent
+		);
+	});
+
+	it('should also create a file with custom DOM, if custom DOM is passed', async () => {
+		await mkdir(folderPath);
+		const folderExists = await exists(folderPath);
+		assert(folderExists);
+		await generateComponentFile({
+			title,
+			folderName,
+			folderPath,
+			customDOM
+		});
+		const fileExists = await exists(filePath);
+		assert(fileExists);
+		const fileContent = await readFile(filePath);
+		assert.equal(
+			getFileContentForComponent(title, folderName, customDOM),
 			fileContent
 		);
 	});
@@ -149,6 +169,7 @@ describe('generateStyleFile', () => {
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.scss`);
+	const customCSS = 'p { color: red;}';
 
 	beforeEach(async () => await checkAndRemove(folderPath, filePath));
 	afterEach(async () => await checkAndRemove(folderPath, filePath));
@@ -162,5 +183,19 @@ describe('generateStyleFile', () => {
 		assert(fileExists);
 		const fileContent = await readFile(filePath);
 		assert.equal(getFileContentForStyleFile(folderName), fileContent);
+	});
+
+	it('should also create a file with custom CSS, if custom CSS is passed', async () => {
+		await mkdir(folderPath);
+		const folderExists = await exists(folderPath);
+		assert(folderExists);
+		await generateStyleFile({ title, folderPath, folderName, customCSS });
+		const fileExists = await exists(filePath);
+		assert(fileExists);
+		const fileContent = await readFile(filePath);
+		assert.equal(
+			getFileContentForStyleFile(folderName, customCSS),
+			fileContent
+		);
 	});
 });

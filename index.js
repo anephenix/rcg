@@ -7,10 +7,21 @@ const { generateComponentFiles } = require('./lib');
 /*
 	Generates the React component's files
 */
-const generateComponent = async (componentName, srcFolderPath) => {
+const generateComponent = async (
+	componentName,
+	srcFolderPath,
+	customDOM,
+	customCSS
+) => {
 	const title = to.pascal(componentName);
 	const folderName = to.slug(componentName);
-	await generateComponentFiles({ title, folderName, srcFolderPath });
+	await generateComponentFiles({
+		title,
+		folderName,
+		srcFolderPath,
+		customDOM,
+		customCSS
+	});
 };
 
 module.exports = generateComponent;
