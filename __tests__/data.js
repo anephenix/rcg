@@ -28,7 +28,7 @@ const expectedTestContent = `
 import MyTestComponent from './MyTestComponent';
 
 describe('MyTestComponent', () => {
-	it('should do something');
+	test.todo('should do something');
 });`;
 
 module.exports = {
