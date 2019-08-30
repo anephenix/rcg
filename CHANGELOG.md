@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 0.0.5 - Friday 30th August, 2019
+
+-   Test files are now generated as pending tests (for Jest only)
+
 ### 0.0.4 - Sunday 9th June, 2019
 
 -   Added a way to specify custom DOM to insert into the React Component
