@@ -9,31 +9,42 @@ const generateComponent = require('../index');
 const packageJson = require('../package.json');
 
 const parseDirectory = directory => {
-	return path.resolve(process.cwd(), directory);
+    return path.resolve(process.cwd(), directory);
 };
 
 const mainAction = async () => {
-	const componentName = program.args[0];
-	const defaultSrcFolderPath = path.join(process.cwd(), 'src', 'components');
-	const srcFolderPath = program.directory || defaultSrcFolderPath;
-	const customDOM = program.dom || null;
-	const customCSS = program.css || null;
-	await generateComponent(componentName, srcFolderPath, customDOM, customCSS);
+    const componentName = program.args[0];
+    const defaultSrcFolderPath = path.join(process.cwd(), 'src', 'components');
+    const srcFolderPath = program.directory || defaultSrcFolderPath;
+    const customDOM = program.dom || null;
+    const customCSS = program.css || null;
+    const customJSExtension = program.jsExtension || null;
+    await generateComponent(
+        componentName,
+        srcFolderPath,
+        customDOM,
+        customCSS,
+        customJSExtension
+    );
 };
 
 program
-	.version(packageJson.version)
-	.option(
-		'-f, --directory <dir>',
-		'The directory to put the component in',
-		parseDirectory
-	)
-	.option(
-		'-d, --dom <html>',
-		'custom DOM content to embed into the component'
-	)
-	.option('-c, --css <css>', 'custom CSS content for the component')
-	.action(mainAction);
+    .version(packageJson.version)
+    .option(
+        '-f, --directory <dir>',
+        'The directory to put the component in',
+        parseDirectory
+    )
+    .option(
+        '-d, --dom <html>',
+        'custom DOM content to embed into the component'
+    )
+    .option('-c, --css <css>', 'custom CSS content for the component')
+    .option(
+        '-j,--jsExtension <jsExtension>',
+        'custom JS extension for the component file'
+    )
+    .action(mainAction);
 
 // Run the command
 program.parse(process.argv);

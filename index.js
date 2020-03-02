@@ -11,7 +11,8 @@ const generateComponent = async (
 	componentName,
 	srcFolderPath,
 	customDOM,
-	customCSS
+	customCSS,
+	customJSExtension
 ) => {
 	const title = to.pascal(componentName);
 	const folderName = to.slug(componentName);
@@ -20,7 +21,8 @@ const generateComponent = async (
 		folderName,
 		srcFolderPath,
 		customDOM,
-		customCSS
+		customCSS,
+		customJSExtension
 	});
 };
 

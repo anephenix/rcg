@@ -60,6 +60,12 @@ To add custom CSS to insert into the SASS file for the component, you can pass t
 npx rcg NavBar --css="#logo { color: #ffcc00;}"
 ```
 
+To specify a custom file extension for the component and test file names (e.g. jsx, tsx), you can pass the `--jsExtension` flag:
+
+```
+npx rcg NavBar --jsExtension=jsx
+```
+
 #### via NPM
 
 You can load it this way:
@@ -87,9 +93,16 @@ const srcFolderPath = path.join(process.cwd(), 'src', 'components');
 
 const customDOM = '<p>Hello</p>';
 const customCSS = 'p { color: red; } ';
+const customJSExtension = 'jsx';
 
 (async () => {
-    await rcg(componentName, srcFolderPath, customDOM, customCSS);
+    await rcg(
+        componentName,
+        srcFolderPath,
+        customDOM,
+        customCSS,
+        customJSExtension
+    );
 })();
 ```
 
@@ -101,4 +114,4 @@ npm t
 
 ### License and Credits
 
-&copy; 2019 Anephenix OÜ. RCG is licensed under the MIT License.
+&copy; 2020 Anephenix OÜ. RCG is licensed under the MIT License.

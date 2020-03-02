@@ -82,4 +82,31 @@ describe('rcg binary', () => {
 			}
 		});
 	});
+	describe('--jsExtension', () => {
+		const title = 'MyTestComponent';
+		const folderName = 'my-test-component';
+		const folderPath = path.join(
+			process.cwd(),
+			'src',
+			'components',
+			folderName
+		);
+
+		beforeEach(async () => await seed(['src', 'components']));
+		afterEach(async () => await cleanup('src'));
+
+		it('should create a component with a custom file extension on the end, as well as the test file extension', async () => {
+			const command = `./bin/rcg ${title} --jsExtension jsx`;
+			const { stdout, stderr } = await exec(command);
+			assert.equal(stdout, '');
+			assert.equal(stderr, '');
+			const folderExists = await exists(folderPath);
+			assert(folderExists);
+			const files = await readdir(folderPath);
+			const expectedFiles = [`${title}.jsx`, `${title}.test.jsx`];
+			for (const file of expectedFiles) {
+				assert(files.indexOf(file) !== -1);
+			}
+		});
+	});
 });

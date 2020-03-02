@@ -20,9 +20,11 @@ const {
 	expectedTestContent
 } = require('../../data');
 
-const checkAndRemove = async (folderPath, filePath) => {
-	const fileExists = await exists(filePath);
-	if (fileExists) await unlink(filePath);
+const checkAndRemove = async (folderPath, filePaths) => {
+	for await (const filePath of filePaths) {
+		const fileExists = await exists(filePath);
+		if (fileExists) await unlink(filePath);
+	}
 	const folderExists = await exists(folderPath);
 	if (folderExists) await rmdir(folderPath);
 };
@@ -104,10 +106,27 @@ describe('generateComponentFile', () => {
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.js`);
+	const customJSExtension = 'jsx';
+	const filePathWithCustomJSExtension = path.join(
+		folderPath,
+		`${title}.${customJSExtension}`
+	);
 	const customDOM = '<div>Welcome here</div>';
 
-	beforeEach(async () => await checkAndRemove(folderPath, filePath));
-	afterEach(async () => await checkAndRemove(folderPath, filePath));
+	beforeEach(
+		async () =>
+			await checkAndRemove(folderPath, [
+				filePath,
+				filePathWithCustomJSExtension
+			])
+	);
+	afterEach(
+		async () =>
+			await checkAndRemove(folderPath, [
+				filePath,
+				filePathWithCustomJSExtension
+			])
+	);
 
 	it('should create the file for the React Component, based on the name', async () => {
 		await mkdir(folderPath);
@@ -141,6 +160,26 @@ describe('generateComponentFile', () => {
 			fileContent
 		);
 	});
+
+	it('can create the file with a custom extension, if a custom extension is passed', async () => {
+		await mkdir(folderPath);
+		const folderExists = await exists(folderPath);
+		assert(folderExists);
+		await generateComponentFile({
+			title,
+			folderName,
+			folderPath,
+			customDOM,
+			customJSExtension
+		});
+		const fileExists = await exists(filePathWithCustomJSExtension);
+		assert(fileExists);
+		const fileContent = await readFile(filePathWithCustomJSExtension);
+		assert.equal(
+			getFileContentForComponent(title, folderName, customDOM),
+			fileContent
+		);
+	});
 });
 
 describe('generateTestFile', () => {
@@ -148,9 +187,26 @@ describe('generateTestFile', () => {
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.test.js`);
+	const customJSExtension = 'jsx';
+	const filePathWithCustomJSExtension = path.join(
+		folderPath,
+		`${title}.test.${customJSExtension}`
+	);
 
-	beforeEach(async () => await checkAndRemove(folderPath, filePath));
-	afterEach(async () => await checkAndRemove(folderPath, filePath));
+	beforeEach(
+		async () =>
+			await checkAndRemove(folderPath, [
+				filePath,
+				filePathWithCustomJSExtension
+			])
+	);
+	afterEach(
+		async () =>
+			await checkAndRemove(folderPath, [
+				filePath,
+				filePathWithCustomJSExtension
+			])
+	);
 
 	it('should create the test file, based on the name of the component', async () => {
 		await mkdir(folderPath);
@@ -162,6 +218,21 @@ describe('generateTestFile', () => {
 		const fileContent = await readFile(filePath);
 		assert.equal(getFileContentForTestFile(title), fileContent);
 	});
+
+	it('can create the test file with a custom extension, if a custom extension is passed', async () => {
+		await mkdir(folderPath);
+		const folderExists = await exists(folderPath);
+		assert(folderExists);
+		await generateTestFile({
+			title,
+			folderPath,
+			customJSExtension
+		});
+		const fileExists = await exists(filePathWithCustomJSExtension);
+		assert(fileExists);
+		const fileContent = await readFile(filePathWithCustomJSExtension);
+		assert.equal(getFileContentForTestFile(title), fileContent);
+	});
 });
 
 describe('generateStyleFile', () => {
@@ -171,8 +242,8 @@ describe('generateStyleFile', () => {
 	const filePath = path.join(folderPath, `${title}.scss`);
 	const customCSS = 'p { color: red;}';
 
-	beforeEach(async () => await checkAndRemove(folderPath, filePath));
-	afterEach(async () => await checkAndRemove(folderPath, filePath));
+	beforeEach(async () => await checkAndRemove(folderPath, [filePath]));
+	afterEach(async () => await checkAndRemove(folderPath, [filePath]));
 
 	it('should create the style file, based on the name of the component', async () => {
 		await mkdir(folderPath);

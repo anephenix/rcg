@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 0.0.6 - Monday 2nd March, 2020
+
+-   Be able to generate component and test files with a custom file extension (i.e. jsx)
+
 ### 0.0.5 - Friday 30th August, 2019
 
 -   Test files are now generated as pending tests (for Jest only)
