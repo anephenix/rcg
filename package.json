@@ -21,16 +21,16 @@
         "test"
     ],
     "devDependencies": {
-        "coveralls": "^3.0.3",
-        "eslint": "^6.0.1",
-        "eslint-plugin-jest": "^23.0.0",
-        "jest": "^24.8.0",
+        "coveralls": "^3.0.11",
+        "eslint": "^6.8.0",
+        "eslint-plugin-jest": "^23.8.2",
+        "jest": "^25.2.0",
         "jsdoc": "^3.6.3",
         "pre-commit": "^1.2.2",
-        "prettier": "1.19.1"
+        "prettier": "2.0.2"
     },
     "dependencies": {
-        "commander": "^4.1.1",
+        "commander": "^5.0.0",
         "to-case": "^2.0.0"
     }
 }
