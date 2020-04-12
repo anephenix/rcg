@@ -9,7 +9,7 @@ const {
 	getFileContentForTestFile,
 	generateComponentFile,
 	generateTestFile,
-	generateStyleFile
+	generateStyleFile,
 } = require('../../../lib/generators');
 const { exists, readFile, unlink, mkdir, rmdir } = require('../../helpers');
 const {
@@ -17,7 +17,7 @@ const {
 	expectedComponentContentWithDom,
 	expectedSASSContent,
 	expectedSASSContentWithCustomCSS,
-	expectedTestContent
+	expectedTestContent,
 } = require('../../data');
 
 const checkAndRemove = async (folderPath, filePaths) => {
@@ -117,14 +117,14 @@ describe('generateComponentFile', () => {
 		async () =>
 			await checkAndRemove(folderPath, [
 				filePath,
-				filePathWithCustomJSExtension
+				filePathWithCustomJSExtension,
 			])
 	);
 	afterEach(
 		async () =>
 			await checkAndRemove(folderPath, [
 				filePath,
-				filePathWithCustomJSExtension
+				filePathWithCustomJSExtension,
 			])
 	);
 
@@ -150,7 +150,7 @@ describe('generateComponentFile', () => {
 			title,
 			folderName,
 			folderPath,
-			customDOM
+			customDOM,
 		});
 		const fileExists = await exists(filePath);
 		assert(fileExists);
@@ -170,7 +170,7 @@ describe('generateComponentFile', () => {
 			folderName,
 			folderPath,
 			customDOM,
-			customJSExtension
+			customJSExtension,
 		});
 		const fileExists = await exists(filePathWithCustomJSExtension);
 		assert(fileExists);
@@ -197,14 +197,14 @@ describe('generateTestFile', () => {
 		async () =>
 			await checkAndRemove(folderPath, [
 				filePath,
-				filePathWithCustomJSExtension
+				filePathWithCustomJSExtension,
 			])
 	);
 	afterEach(
 		async () =>
 			await checkAndRemove(folderPath, [
 				filePath,
-				filePathWithCustomJSExtension
+				filePathWithCustomJSExtension,
 			])
 	);
 
@@ -226,7 +226,7 @@ describe('generateTestFile', () => {
 		await generateTestFile({
 			title,
 			folderPath,
-			customJSExtension
+			customJSExtension,
 		});
 		const fileExists = await exists(filePathWithCustomJSExtension);
 		assert(fileExists);

@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 0.0.7 - Sunday 12th April, 2020
+
+-   Load configuration options from an rcg.config.js file, if it exists
+-   Updated dependencies
+
 ### 0.0.6 - Monday 2nd March, 2020
 
 -   Be able to generate component and test files with a custom file extension (i.e. jsx)

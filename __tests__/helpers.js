@@ -4,7 +4,6 @@ const path = require('path');
 const childProcess = require('child_process');
 const writeFile = util.promisify(fs.writeFile);
 
-
 // Promisified functions
 const exists = util.promisify(fs.exists);
 const readFile = util.promisify(fs.readFile);
@@ -14,7 +13,7 @@ const rmdir = util.promisify(fs.rmdir);
 const readdir = util.promisify(fs.readdir);
 const exec = util.promisify(childProcess.exec);
 
-const cleanup = async folderPath => {
+const cleanup = async (folderPath) => {
 	const folderExists = await exists(folderPath);
 	if (!folderExists) return;
 	const files = await readdir(folderPath);
@@ -33,5 +32,5 @@ module.exports = {
 	rmdir,
 	readdir,
 	exec,
-	cleanup
+	cleanup,
 };

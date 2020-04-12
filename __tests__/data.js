@@ -3,12 +3,12 @@ const expectedSASSContent = `
 	// TODO - put styling information here
 }`;
 
-const expectedSASSContentWithCustomCSS = customCSS => `
+const expectedSASSContentWithCustomCSS = (customCSS) => `
 #my-test-component {
 	${customCSS}
 }`;
 
-const expectedComponentContentWithDom = customDom => {
+const expectedComponentContentWithDom = (customDom) => {
 	return `
 import './MyTestComponent.scss';
 
@@ -36,5 +36,5 @@ module.exports = {
 	expectedSASSContentWithCustomCSS,
 	expectedComponentContent,
 	expectedComponentContentWithDom,
-	expectedTestContent
+	expectedTestContent,
 };

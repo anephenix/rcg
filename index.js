@@ -22,7 +22,7 @@ const generateComponent = async (
 		srcFolderPath,
 		customDOM,
 		customCSS,
-		customJSExtension
+		customJSExtension,
 	});
 };
 
