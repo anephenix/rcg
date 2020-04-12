@@ -21,3 +21,20 @@ every time it wants to create a react component, though the config can be overri
 So, task breakdown...
 
 -   Get the codebase generating code somehow
+
+### Support for rcg.config.js file to read the config from
+
+The idea is that it will lookup the options for 
+
+### Support for FELA styles
+
+Volvo Cars uses Fela in combination with their UI library vcc-ui. It would be good to be able to 
+generate components that use FELA for the CSS, rather than SCSS.
+
+### Support for TypeScript
+
+Be able to generate the JS files as TypeScript files instead
+
+### Support for Prop Types
+
+Be able to generate components that have prop types specified for them
