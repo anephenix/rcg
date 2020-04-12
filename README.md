@@ -78,7 +78,7 @@ const componentName = 'MyComponent';
 const srcFolderPath = path.join(process.cwd(), 'src', 'components');
 
 (async () => {
-    await rcg(componentName, srcFolderPath);
+	await rcg(componentName, srcFolderPath);
 })();
 ```
 
@@ -96,14 +96,31 @@ const customCSS = 'p { color: red; } ';
 const customJSExtension = 'jsx';
 
 (async () => {
-    await rcg(
-        componentName,
-        srcFolderPath,
-        customDOM,
-        customCSS,
-        customJSExtension
-    );
+	await rcg(
+		componentName,
+		srcFolderPath,
+		customDOM,
+		customCSS,
+		customJSExtension
+	);
 })();
+```
+
+### Loading options from a config file
+
+Rather than having to specify arguments via the CLI each time, you can load them via a rcg.config.js file, with these contents:
+
+```javascript
+const path = require('path');
+
+const config = {
+	// Put the component folder and file in the components directory
+	directory: path.join(process.cwd(), 'components'),
+	// Use the jsx filename extension for the component files
+	jsExtension: 'jsx',
+};
+
+module.exports = config;
 ```
 
 ### Running Tests
