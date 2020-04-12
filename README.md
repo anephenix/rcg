@@ -66,6 +66,14 @@ To specify a custom file extension for the component and test file names (e.g. j
 npx rcg NavBar --jsExtension=jsx
 ```
 
+To specify a custom file extension for the css file (e.g. .style.js), you can pass the `--cssExtension` flag:
+
+```
+npx rcg NavBar --cssExtension=style.js
+```
+
+By default, it generates a scss file. This will likely change in the future to a default pattern of css-in-js
+
 #### via NPM
 
 You can load it this way:
@@ -94,6 +102,7 @@ const srcFolderPath = path.join(process.cwd(), 'src', 'components');
 const customDOM = '<p>Hello</p>';
 const customCSS = 'p { color: red; } ';
 const customJSExtension = 'jsx';
+const customCssExtension = 'style.js';
 
 (async () => {
 	await rcg(
@@ -101,7 +110,8 @@ const customJSExtension = 'jsx';
 		srcFolderPath,
 		customDOM,
 		customCSS,
-		customJSExtension
+		customJSExtension,
+		customCssExtension
 	);
 })();
 ```

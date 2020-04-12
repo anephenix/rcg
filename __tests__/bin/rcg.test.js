@@ -5,7 +5,14 @@ const assert = require('assert');
 const path = require('path');
 
 // File Dependencies
-const { exists, readdir, exec, writeFile, unlink } = require('../helpers');
+const {
+	exists,
+	readdir,
+	exec,
+	readFile,
+	writeFile,
+	unlink,
+} = require('../helpers');
 const { version } = require('../../package.json');
 
 const seed = async (dirs) => {
@@ -167,6 +174,39 @@ describe('rcg binary', () => {
 			for (const file of expectedFiles) {
 				assert(files.indexOf(file) !== -1);
 			}
+		});
+	});
+	describe('--cssExtension', () => {
+		const title = 'MyTestComponent';
+		const folderName = 'my-test-component';
+		const folderPath = path.join(
+			process.cwd(),
+			'src',
+			'components',
+			folderName
+		);
+
+		beforeEach(async () => await seed(['src', 'components']));
+		afterEach(async () => await cleanup('src'));
+
+		it('should create a component with a custom file extension on the end', async () => {
+			const command = `./bin/rcg ${title} --cssExtension style.js`;
+			const { stdout, stderr } = await exec(command);
+			assert.equal(stdout, '');
+			assert.equal(stderr, '');
+			const folderExists = await exists(folderPath);
+			assert(folderExists);
+			const files = await readdir(folderPath);
+			const expectedFiles = [`${title}.style.js`];
+			for (const file of expectedFiles) {
+				assert(files.indexOf(file) !== -1);
+			}
+			const componentFile = path.join(folderPath, `${title}.js`);
+			const componentFileContent = await readFile(componentFile, 'utf8');
+			assert(
+				componentFileContent.match(`import './${title}.style.js';`) !==
+					null
+			);
 		});
 	});
 });

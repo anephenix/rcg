@@ -59,7 +59,7 @@ describe('getFileContentForComponent', () => {
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		assert.equal(
-			getFileContentForComponent(title, folderName),
+			getFileContentForComponent(title, folderName, null, 'scss'),
 			expectedComponentContent
 		);
 	});
@@ -68,8 +68,14 @@ describe('getFileContentForComponent', () => {
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		const customDOM = '<div>Welcome here</div>';
+		const customCssExtension = 'scss';
 		assert.equal(
-			getFileContentForComponent(title, folderName, customDOM),
+			getFileContentForComponent(
+				title,
+				folderName,
+				customDOM,
+				customCssExtension
+			),
 			expectedComponentContentWithDom(customDOM)
 		);
 	});

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 0.0.8 - Sunday 12th April, 2020
+
+-   Added support for generating files with a custom file extension
+
 ### 0.0.7 - Sunday 12th April, 2020
 
 -   Load configuration options from an rcg.config.js file, if it exists

@@ -40,12 +40,15 @@ const mainAction = async () => {
 	const customCSS = program.css || null;
 	const customJSExtension =
 		program.jsExtension || configFileOptions.jsExtension || null;
+	const customCssExtension =
+		program.cssExtension || configFileOptions.cssExtension || 'scss';
 	await generateComponent(
 		componentName,
 		srcFolderPath,
 		customDOM,
 		customCSS,
-		customJSExtension
+		customJSExtension,
+		customCssExtension
 	);
 };
 
@@ -64,6 +67,10 @@ program
 	.option(
 		'-j,--jsExtension <jsExtension>',
 		'custom JS extension for the component file'
+	)
+	.option(
+		'-s,--cssExtension <cssExtension>',
+		'custom CSS extension for the component style file'
 	)
 	.action(mainAction);
 
