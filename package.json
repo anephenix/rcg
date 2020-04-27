@@ -30,7 +30,7 @@
 		"prettier": "^2.0.4"
 	},
 	"dependencies": {
-		"commander": "^5.0.0",
+		"commander": "^5.1.0",
 		"to-case": "^2.0.0"
 	}
 }
