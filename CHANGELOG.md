@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 0.0.9 - Thursday 21st May, 2020
+
+-   Added a way to log what files are created by RCG on the CLI
+
 ### 0.0.8 - Sunday 12th April, 2020
 
 -   Added support for generating files with a custom file extension
