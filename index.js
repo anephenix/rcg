@@ -17,7 +17,7 @@ const generateComponent = async (
 ) => {
 	const title = to.pascal(componentName);
 	const folderName = to.slug(componentName);
-	await generateComponentFiles({
+	const filesCreated = await generateComponentFiles({
 		title,
 		folderName,
 		srcFolderPath,
@@ -26,6 +26,7 @@ const generateComponent = async (
 		customJSExtension,
 		customCssExtension,
 	});
+	return filesCreated;
 };
 
 module.exports = generateComponent;

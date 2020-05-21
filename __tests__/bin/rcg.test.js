@@ -39,8 +39,7 @@ describe('rcg binary', () => {
 
 		it('should create a component with a given name in the src/components directory', async () => {
 			const command = `./bin/rcg ${title}`;
-			const { stdout, stderr } = await exec(command);
-			assert.equal(stdout, '');
+			const { stderr } = await exec(command);
 			assert.equal(stderr, '');
 			const folderExists = await exists(folderPath);
 			assert(folderExists);
@@ -92,7 +91,12 @@ describe('rcg binary', () => {
 		it('should note that it is loading config options from the rcg.config.js file', async () => {
 			assert.equal(
 				recordedStdout,
-				`Using configuration settings found at ${exampleConfigFilePath}\n`
+				`Using configuration settings found at ${exampleConfigFilePath}
+Created files:\n
+/Users/pauljensen/Work/anephenix/rcg/components/my-test-component/MyTestComponent.jsx
+/Users/pauljensen/Work/anephenix/rcg/components/my-test-component/MyTestComponent.scss
+/Users/pauljensen/Work/anephenix/rcg/components/my-test-component/MyTestComponent.test.jsx
+`
 			);
 			assert.equal(recordedStderr, '');
 		});
@@ -133,8 +137,7 @@ describe('rcg binary', () => {
 
 		it('should create a component at the specified directory', async () => {
 			const command = `./bin/rcg ${title} --directory ${directory}`;
-			const { stdout, stderr } = await exec(command);
-			assert.equal(stdout, '');
+			const { stderr } = await exec(command);
 			assert.equal(stderr, '');
 			const folderExists = await exists(folderPath);
 			assert(folderExists);
@@ -164,8 +167,7 @@ describe('rcg binary', () => {
 
 		it('should create a component with a custom file extension on the end, as well as the test file extension', async () => {
 			const command = `./bin/rcg ${title} --jsExtension jsx`;
-			const { stdout, stderr } = await exec(command);
-			assert.equal(stdout, '');
+			const { stderr } = await exec(command);
 			assert.equal(stderr, '');
 			const folderExists = await exists(folderPath);
 			assert(folderExists);
@@ -191,8 +193,7 @@ describe('rcg binary', () => {
 
 		it('should create a component with a custom file extension on the end', async () => {
 			const command = `./bin/rcg ${title} --cssExtension style.js`;
-			const { stdout, stderr } = await exec(command);
-			assert.equal(stdout, '');
+			const { stderr } = await exec(command);
 			assert.equal(stderr, '');
 			const folderExists = await exists(folderPath);
 			assert(folderExists);
@@ -206,6 +207,47 @@ describe('rcg binary', () => {
 			assert(
 				componentFileContent.match(`import './${title}.style.js';`) !==
 					null
+			);
+		});
+	});
+
+	describe('universal behaviour', () => {
+		const title = 'MyTestComponent';
+		const folderName = 'my-test-component';
+		const folderPath = path.join(
+			process.cwd(),
+			'src',
+			'components',
+			folderName
+		);
+
+		beforeEach(async () => await seed(['src', 'components']));
+		afterEach(async () => await cleanup('src'));
+
+		it('should log all of the files that were created after executing the binary', async () => {
+			const command = `./bin/rcg ${title}`;
+			const { stdout, stderr } = await exec(command);
+
+			assert.equal(stderr, '');
+			const folderExists = await exists(folderPath);
+			assert(folderExists);
+			const files = await readdir(folderPath);
+			const expectedFiles = [
+				`${title}.js`,
+				`${title}.scss`,
+				`${title}.test.js`,
+			];
+			for (const file of expectedFiles) {
+				assert(files.indexOf(file) !== -1);
+			}
+			assert.equal(
+				stdout,
+				`Created files:
+
+${path.join(folderPath, expectedFiles[0])}
+${path.join(folderPath, expectedFiles[1])}
+${path.join(folderPath, expectedFiles[2])}
+`
 			);
 		});
 	});

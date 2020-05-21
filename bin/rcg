@@ -42,7 +42,7 @@ const mainAction = async () => {
 		program.jsExtension || configFileOptions.jsExtension || null;
 	const customCssExtension =
 		program.cssExtension || configFileOptions.cssExtension || 'scss';
-	await generateComponent(
+	const filesCreated = await generateComponent(
 		componentName,
 		srcFolderPath,
 		customDOM,
@@ -50,6 +50,9 @@ const mainAction = async () => {
 		customJSExtension,
 		customCssExtension
 	);
+
+	console.log('Created files:\n');
+	filesCreated.map((c) => console.log(`${c}`));
 };
 
 program

@@ -20,7 +20,7 @@ describe('generateComponent', () => {
 	});
 
 	it('should generate a boilerplate for a react component, given a name and a containing folder', async () => {
-		await generateComponent(title, srcFolderPath);
+		const filesCreated = await generateComponent(title, srcFolderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
 		const componentExists = await exists(
@@ -35,5 +35,13 @@ describe('generateComponent', () => {
 			path.join(folderPath, `${title}.scss`)
 		);
 		assert(styleExists);
+		assert.deepEqual(
+			[
+				path.join(folderPath, `${title}.js`),
+				path.join(folderPath, `${title}.scss`),
+				path.join(folderPath, `${title}.test.js`),
+			],
+			filesCreated
+		);
 	});
 });
