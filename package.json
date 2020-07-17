@@ -22,9 +22,9 @@
 	],
 	"devDependencies": {
 		"coveralls": "^3.1.0",
-		"eslint": "^7.2.0",
-		"eslint-plugin-jest": "^23.13.2",
-		"jest": "^26.0.1",
+		"eslint": "^7.4.0",
+		"eslint-plugin-jest": "^23.18.0",
+		"jest": "^26.1.0",
 		"jsdoc": "^3.6.4",
 		"npm-upgrade": "^2.0.3",
 		"pre-commit": "^1.2.2",
