@@ -2,6 +2,7 @@
 
 // NPM Dependencies
 const assert = require('assert');
+const os = require('os');
 const path = require('path');
 
 // File Dependencies
@@ -89,13 +90,14 @@ describe('rcg binary', () => {
 		});
 
 		it('should note that it is loading config options from the rcg.config.js file', async () => {
+			const homeDir = os.homedir();
 			assert.equal(
 				recordedStdout,
 				`Using configuration settings found at ${exampleConfigFilePath}
 Created files:\n
-/Users/pauljensen/Work/anephenix/rcg/components/my-test-component/MyTestComponent.jsx
-/Users/pauljensen/Work/anephenix/rcg/components/my-test-component/MyTestComponent.scss
-/Users/pauljensen/Work/anephenix/rcg/components/my-test-component/MyTestComponent.test.jsx
+${homeDir}/Work/anephenix/rcg/components/my-test-component/MyTestComponent.jsx
+${homeDir}/Work/anephenix/rcg/components/my-test-component/MyTestComponent.scss
+${homeDir}/Work/anephenix/rcg/components/my-test-component/MyTestComponent.test.jsx
 `
 			);
 			assert.equal(recordedStderr, '');
