@@ -28,20 +28,20 @@ const loadConfigFileIfExists = async () => {
 	return configFile;
 };
 
-const mainAction = async () => {
-	const componentName = program.args[0];
+const mainAction = async (componentName) => {
+	const options = program.opts();
 	const configFileOptions = await loadConfigFileIfExists();
 	const defaultSrcFolderPath = path.join(process.cwd(), 'src', 'components');
 	const srcFolderPath =
-		program.directory ||
+		options.directory ||
 		configFileOptions.directory ||
 		defaultSrcFolderPath;
-	const customDOM = program.dom || null;
-	const customCSS = program.css || null;
+	const customDOM = options.dom || null;
+	const customCSS = options.css || null;
 	const customJSExtension =
-		program.jsExtension || configFileOptions.jsExtension || null;
+		options.jsExtension || configFileOptions.jsExtension || null;
 	const customCssExtension =
-		program.cssExtension || configFileOptions.cssExtension || 'scss';
+		options.cssExtension || configFileOptions.cssExtension || 'scss';
 	const filesCreated = await generateComponent(
 		componentName,
 		srcFolderPath,
@@ -75,7 +75,8 @@ program
 		'-s,--cssExtension <cssExtension>',
 		'custom CSS extension for the component style file'
 	)
+	.arguments('<componentName>')
 	.action(mainAction);
 
 // Run the command
-program.parse(process.argv);
+program.parse();
