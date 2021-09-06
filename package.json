@@ -5,8 +5,8 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "npx eslint .",
-		"cover": "jest --coverage --coverageReporters=text-lcov | coveralls",
-		"test": "jest --coverage"
+		"cover": "npx jest --coverage --coverageReporters=text-lcov | coveralls",
+		"test": "npx jest --coverage"
 	},
 	"keywords": [
 		"React",
