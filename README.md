@@ -4,7 +4,7 @@ A Node.js library and CLI for generating React components.
 
 [![npm version](https://badge.fury.io/js/%40anephenix%2Frcg.svg)](https://badge.fury.io/js/%40anephenix%2Frcg)
 
-[![CircleCI](https://circleci.com/gh/anephenix/rcg.svg?style=shield)](https://circleci.com/gh/anephenix/rcg)
+[![CI](https://github.com/anephenix/rcg/actions/workflows/node.js.yml/badge.svg)](https://github.com/anephenix/rcg/actions/workflows/node.js.yml)
 [![Coverage Status](https://coveralls.io/repos/github/anephenix/rcg/badge.svg?branch=master)](https://coveralls.io/github/anephenix/rcg?branch=master)
 [![Maintainability](https://api.codeclimate.com/v1/badges/67061d6077ef7ceaa0c9/maintainability)](https://codeclimate.com/github/anephenix/rcg/maintainability)
 
