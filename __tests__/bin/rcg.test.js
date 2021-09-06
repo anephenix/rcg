@@ -90,10 +90,9 @@ describe('rcg binary', () => {
 		});
 
 		it('should note that it is loading config options from the rcg.config.js file', async () => {
-			const homeDir =
-				process.env.CIRCLECI || process.env.CI
-					? os.homedir()
-					: os.homedir() + '/Work/anephenix';
+			const homeDir = process.env.CI
+				? os.homedir() + '/work/rcg'
+				: os.homedir() + '/Work/anephenix';
 			assert.strictEqual(
 				recordedStdout,
 				`Using configuration settings found at ${exampleConfigFilePath}
