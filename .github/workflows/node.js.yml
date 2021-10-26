@@ -33,6 +33,6 @@ jobs:
     - run: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - run: chmod +x ./cc-test-reporter
     - run: ./cc-test-reporter before-build 
-    - run: npx nyc --reporter=lcov
+    - run: npx nyc --reporter=lcov npm run test
     - run: ./cc-test-reporter after-build < ./coverage/lcov.info
     - run: npm run cover
