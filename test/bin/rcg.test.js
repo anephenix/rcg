@@ -76,7 +76,7 @@ describe('rcg binary', () => {
 		let recordedStdout = null;
 		let recordedStderr = null;
 
-		beforeAll(async () => {
+		before(async () => {
 			await seed(['components']);
 			await createExampleConfigFile();
 			const { stdout, stderr } = await exec(command);
@@ -84,7 +84,7 @@ describe('rcg binary', () => {
 			recordedStderr = stderr;
 		});
 
-		afterAll(async () => {
+		after(async () => {
 			await cleanup('components');
 			await removeExampleConfigFile();
 		});
