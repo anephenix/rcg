@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 0.0.10 - Wednesday 27th October, 2021
+
+-   The source folder(s) are generated in case they do not exist already.
+-   Generate components that support Next.js' built-in support for SCSS.
+
 ### 0.0.9 - Thursday 21st May, 2020
 
 -   Added a way to log what files are created by RCG on the CLI

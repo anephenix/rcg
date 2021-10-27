@@ -59,7 +59,7 @@ describe('getFileContentForComponent', () => {
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		assert.equal(
-			getFileContentForComponent(title, folderName, null, 'scss'),
+			getFileContentForComponent(title, folderName, null, 'scss', false),
 			expectedComponentContent
 		);
 	});
@@ -69,14 +69,52 @@ describe('getFileContentForComponent', () => {
 		const folderName = 'my-test-component';
 		const customDOM = '<div>Welcome here</div>';
 		const customCssExtension = 'scss';
+		const nextjsSassSupport = false;
 		assert.equal(
 			getFileContentForComponent(
 				title,
 				folderName,
 				customDOM,
-				customCssExtension
+				customCssExtension,
+				nextjsSassSupport
 			),
-			expectedComponentContentWithDom(customDOM)
+			expectedComponentContentWithDom(customDOM, nextjsSassSupport)
+		);
+	});
+
+	it('should enable the user to generate a component for NextJs built-in sass support', () => {
+		const title = 'MyTestComponent';
+		const folderName = 'my-test-component';
+		const customDOM = null;
+		const customCssExtension = 'scss';
+		const nextjsSassSupport = true;
+		assert.equal(
+			getFileContentForComponent(
+				title,
+				folderName,
+				customDOM,
+				customCssExtension,
+				nextjsSassSupport
+			),
+			expectedComponentContentWithDom(customDOM, nextjsSassSupport)
+		);
+	});
+
+	it('should enable the user to generate a component for NextJs built-in sass support and custom DOM', () => {
+		const title = 'MyTestComponent';
+		const folderName = 'my-test-component';
+		const customDOM = '<div>Welcome here</div>';
+		const customCssExtension = 'scss';
+		const nextjsSassSupport = true;
+		assert.equal(
+			getFileContentForComponent(
+				title,
+				folderName,
+				customDOM,
+				customCssExtension,
+				nextjsSassSupport
+			),
+			expectedComponentContentWithDom(customDOM, nextjsSassSupport)
 		);
 	});
 });
@@ -274,5 +312,23 @@ describe('generateStyleFile', () => {
 			getFileContentForStyleFile(folderName, customCSS),
 			fileContent
 		);
+	});
+
+	it('should enable the user to generate a style file for NextJs built-in sass support', async () => {
+		await mkdir(folderPath);
+		const folderExists = await exists(folderPath);
+		assert(folderExists);
+		await generateStyleFile({
+			title,
+			folderPath,
+			folderName,
+			nextjsSassSupport: true,
+		});
+		const nextSassFilePath = path.join(folderPath, `${title}.module.scss`);
+		const fileExists = await exists(nextSassFilePath);
+		assert(fileExists);
+		const fileContent = await readFile(nextSassFilePath);
+		assert.equal(getFileContentForStyleFile(folderName), fileContent);
+		await checkAndRemove(folderPath, [nextSassFilePath]);
 	});
 });

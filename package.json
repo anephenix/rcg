@@ -1,11 +1,12 @@
 {
 	"name": "@anephenix/rcg",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"description": "React Component Generator",
 	"main": "index.js",
 	"scripts": {
 		"lint": "npx eslint .",
-		"cover": "npx nyc --reporter=text-lcov npm run test | coveralls",
+		"cover": "npx nyc npm run test",
+		"coveralls": "npx nyc --reporter=text-lcov npm run test | coveralls",
 		"test": "npx mocha test/**/*"
 	},
 	"keywords": [

@@ -8,11 +8,26 @@ const expectedSASSContentWithCustomCSS = (customCSS) => `
 	${customCSS}
 }`;
 
-const expectedComponentContentWithDom = (customDom) => {
-	return `
-import './MyTestComponent.scss';
+const expectedComponentContentWithDom = (customDom, nextjsSassSupport) => {
+	// eslint-disable-next-line
+	let id = `'my-test-component'`;
+	let nextjsStylesVariable = '';
+	let mod = '';
 
-const MyTestComponent = () => (<div id='my-test-component'>${customDom}</div>);
+	if (nextjsSassSupport) {
+		// eslint-disable-next-line
+		id = `{styles['my-test-component']}`;
+		nextjsStylesVariable = 'styles from ';
+		mod = 'module.';
+	}
+	let endDiv = ' />';
+	if (customDom) {
+		endDiv = `>${customDom}</div>`;
+	}
+	return `
+import ${nextjsStylesVariable}'./MyTestComponent.${mod}scss';
+
+const MyTestComponent = () => (<div id=${id}${endDiv});
 			
 export default MyTestComponent;`;
 };
@@ -28,6 +43,7 @@ const expectedTestContent = `
 import MyTestComponent from './MyTestComponent';
 
 describe('MyTestComponent', () => {
+	MyTestComponent;
 	test.todo('should do something');
 });`;
 

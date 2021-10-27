@@ -13,7 +13,8 @@ const generateComponent = async (
 	customDOM,
 	customCSS,
 	customJSExtension,
-	customCssExtension
+	customCssExtension,
+	nextjsSassSupport
 ) => {
 	const title = to.pascal(componentName);
 	const folderName = to.slug(componentName);
@@ -25,6 +26,7 @@ const generateComponent = async (
 		customCSS,
 		customJSExtension,
 		customCssExtension,
+		nextjsSassSupport,
 	});
 	return filesCreated;
 };

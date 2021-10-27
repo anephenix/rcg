@@ -42,13 +42,19 @@ const mainAction = async (componentName) => {
 		options.jsExtension || configFileOptions.jsExtension || null;
 	const customCssExtension =
 		options.cssExtension || configFileOptions.cssExtension || 'scss';
+	const nextjsSassSupport =
+		options.nextjsSassSupport ||
+		configFileOptions.nextjsSassSupport ||
+		false;
+
 	const filesCreated = await generateComponent(
 		componentName,
 		srcFolderPath,
 		customDOM,
 		customCSS,
 		customJSExtension,
-		customCssExtension
+		customCssExtension,
+		nextjsSassSupport
 	);
 
 	console.log('Created files:\n');
@@ -74,6 +80,11 @@ program
 	.option(
 		'-s,--cssExtension <cssExtension>',
 		'custom CSS extension for the component style file'
+	)
+	.option(
+		'-n,--nextjsSassSupport',
+		'enable Nextjs built-in SASS Support for the component',
+		false
 	)
 	.arguments('<componentName>')
 	.action(mainAction);
