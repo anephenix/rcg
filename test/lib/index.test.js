@@ -37,4 +37,40 @@ describe('generateComponentFiles', () => {
 		);
 		assert(styleExists);
 	});
+
+	it('should generate the source folder path if it does not exist', async () => {
+		const otherTitle = 'MyOtherTestComponent';
+		const otherFolderName = 'my-other-test-component';
+		const otherSrcFolderPath = path.join(process.cwd(), 'new-folder');
+		const otherFolderPath = path.join(
+			process.cwd(),
+			'new-folder',
+			otherFolderName
+		);
+
+		await generateComponentFiles({
+			title: otherTitle,
+			folderName: otherFolderName,
+			srcFolderPath: otherSrcFolderPath,
+		});
+		const srcfolderExists = await exists(otherSrcFolderPath);
+		assert(srcfolderExists);
+		const folderExists = await exists(otherFolderPath);
+		assert(folderExists);
+		const componentExists = await exists(
+			path.join(otherFolderPath, `${otherTitle}.js`)
+		);
+		assert(componentExists);
+		const testExists = await exists(
+			path.join(otherFolderPath, `${otherTitle}.test.js`)
+		);
+		assert(testExists);
+		const styleExists = await exists(
+			path.join(otherFolderPath, `${otherTitle}.scss`)
+		);
+		assert(styleExists);
+
+		await cleanup(otherFolderPath);
+		await cleanup(otherSrcFolderPath);
+	});
 });
