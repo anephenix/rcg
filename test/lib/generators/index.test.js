@@ -3,7 +3,6 @@ const assert = require('assert');
 const path = require('path');
 // File Dependencies
 const {
-	createFile,
 	getFileContentForComponent,
 	getFileContentForStyleFile,
 	getFileContentForTestFile,
@@ -28,31 +27,6 @@ const checkAndRemove = async (folderPath, filePaths) => {
 	const folderExists = await exists(folderPath);
 	if (folderExists) await rmdir(folderPath);
 };
-
-describe('createFile', () => {
-	const fileName = 'my-example-file.txt';
-	const folderPath = process.cwd();
-	const filePath = path.join(folderPath, fileName);
-
-	beforeEach(async () => {
-		const fileExists = await exists(filePath);
-		if (fileExists) await unlink(filePath);
-	});
-
-	afterEach(async () => {
-		const fileExists = await exists(filePath);
-		if (fileExists) await unlink(filePath);
-	});
-
-	it('should create a file with a given filename, and given content', async () => {
-		const fileContent = 'Hello world';
-		await createFile(folderPath, fileName, fileContent);
-		const fileExists = await exists(filePath);
-		assert(fileExists);
-		const readFileContent = await readFile(filePath);
-		assert.equal(readFileContent, fileContent);
-	});
-});
 
 describe('getFileContentForComponent', () => {
 	it('should return the file content for a React component', () => {
