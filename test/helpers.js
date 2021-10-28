@@ -23,6 +23,15 @@ const cleanup = async (folderPath) => {
 	await rmdir(folderPath);
 };
 
+const checkAndRemove = async (folderPath, filePaths) => {
+	for await (const filePath of filePaths) {
+		const fileExists = await exists(filePath);
+		if (fileExists) await unlink(filePath);
+	}
+	const folderExists = await exists(folderPath);
+	if (folderExists) await rmdir(folderPath);
+};
+
 module.exports = {
 	exists,
 	writeFile,
@@ -33,4 +42,5 @@ module.exports = {
 	readdir,
 	exec,
 	cleanup,
+	checkAndRemove,
 };
