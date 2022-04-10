@@ -5,8 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "npx eslint .",
-		"cover": "npx nyc npm run test",
-		"coveralls": "npx nyc --reporter=text-lcov npm run test",
+		"cover": "npx nyc --reporter=lcov npm run test",
 		"test": "npx mocha test/**/*"
 	},
 	"keywords": [
