@@ -6,7 +6,7 @@
 	"scripts": {
 		"lint": "npx eslint .",
 		"cover": "npx nyc npm run test",
-		"coveralls": "npx nyc --reporter=text-lcov npm run test | coveralls",
+		"coveralls": "npx nyc --reporter=text-lcov npm run test",
 		"test": "npx mocha test/**/*"
 	},
 	"keywords": [
