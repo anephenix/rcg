@@ -6,15 +6,12 @@ const os = require('os');
 const path = require('path');
 
 // File Dependencies
-const {
-	exists,
-	readdir,
-	exec,
-	readFile,
-	writeFile,
-	unlink,
-} = require('../helpers');
+const { exists, readdir, exec, readFile, unlink } = require('../helpers');
 const { version } = require('../../package.json');
+const {
+	exampleConfigFilePath,
+	createExampleConfigFile,
+} = require('../helpers/generateConfigFile');
 
 const seed = async (dirs) => {
 	return await exec(`mkdir -p ${path.join(process.cwd(), ...dirs)}`);
@@ -57,13 +54,6 @@ describe('rcg binary', () => {
 	});
 
 	describe('default, config file present', () => {
-		const exampleConfigFilePath = path.join(process.cwd(), 'rcg.config.js');
-		const createExampleConfigFile = async () => {
-			const exampleConfig = `const path = require('path');
-			module.exports = { directory: path.join(process.cwd(), 'components'), jsExtension: 'js' }`;
-			return await writeFile(exampleConfigFilePath, exampleConfig);
-		};
-
 		const removeExampleConfigFile = async () => {
 			await unlink(exampleConfigFilePath);
 		};

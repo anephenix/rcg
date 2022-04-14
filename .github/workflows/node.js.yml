@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
-      COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
 
     strategy:
@@ -35,4 +34,5 @@ jobs:
     - run: ./cc-test-reporter before-build
     - run: npm run cover
     - run: npx nyc report --reporter=lcov
+    - run: node scripts/generateConfigFile.js
     - run: ./cc-test-reporter after-build
