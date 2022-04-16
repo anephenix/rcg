@@ -140,4 +140,4 @@ npm t
 
 ### License and Credits
 
-&copy; 2020 Anephenix OÜ. RCG is licensed under the MIT License.
+&copy; 2022 Anephenix OÜ. RCG is licensed under the MIT License.
