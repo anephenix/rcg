@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 // NPM Dependencies
-const fs = require('fs');
 const path = require('path');
 const program = require('commander');
-const util = require('util');
-
-// Helper functions
-const exists = util.promisify(fs.exists);
+const loadConfigFileIfExists = require('../lib/helpers/loadConfigFile');
+const {
+	createExampleConfigFile,
+} = require('../lib/helpers/generateConfigFile');
 
 // File Dependencies
 const generateComponent = require('../index');
@@ -15,17 +14,6 @@ const packageJson = require('../package.json');
 
 const parseDirectory = (directory) => {
 	return path.resolve(process.cwd(), directory);
-};
-
-const loadConfigFileIfExists = async () => {
-	const expectedConfigFilePath = path.join(process.cwd(), 'rcg.config.js');
-	const configFileExists = await exists(expectedConfigFilePath);
-	if (!configFileExists) return {};
-	console.log(
-		`Using configuration settings found at ${expectedConfigFilePath}`
-	);
-	const configFile = require(expectedConfigFilePath);
-	return configFile;
 };
 
 const mainAction = async (componentName) => {
@@ -87,7 +75,10 @@ program
 		false
 	)
 	.arguments('<componentName>')
-	.action(mainAction);
+	.action(mainAction)
+	.command('init')
+	.description('Create an example rcg.config.js file')
+	.action(createExampleConfigFile);
 
 // Run the command
 program.parse();

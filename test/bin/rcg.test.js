@@ -6,12 +6,12 @@ const os = require('os');
 const path = require('path');
 
 // File Dependencies
-const { exists, readdir, exec, readFile, unlink } = require('../helpers');
+const { exists, readdir, exec, readFile, unlink } = require('../helpers.js');
 const { version } = require('../../package.json');
 const {
 	exampleConfigFilePath,
 	createExampleConfigFile,
-} = require('../helpers/generateConfigFile');
+} = require('../../lib/helpers/generateConfigFile');
 
 const seed = async (dirs) => {
 	return await exec(`mkdir -p ${path.join(process.cwd(), ...dirs)}`);
@@ -21,7 +21,22 @@ const cleanup = async (dir) => {
 	return await exec(`rm -rf ${path.join(process.cwd(), dir)}`);
 };
 
+const removeExampleConfigFile = async () => {
+	await unlink(exampleConfigFilePath);
+};
+
 describe('rcg binary', () => {
+	describe('init', () => {
+		it('should create an example config file in the current working directory', async () => {
+			const command = './bin/rcg init';
+			const { stderr } = await exec(command);
+			assert.equal(stderr, '');
+			const fileExists = await exists(exampleConfigFilePath);
+			assert(fileExists);
+			await removeExampleConfigFile();
+		});
+	});
+
 	describe('default, no config file present', () => {
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
@@ -54,10 +69,6 @@ describe('rcg binary', () => {
 	});
 
 	describe('default, config file present', () => {
-		const removeExampleConfigFile = async () => {
-			await unlink(exampleConfigFilePath);
-		};
-
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		const folderPath = path.join(process.cwd(), 'components', folderName);
