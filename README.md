@@ -132,6 +132,12 @@ const config = {
 module.exports = config;
 ```
 
+You can create an rcg.config.js file by running this command:
+
+```
+npx rcg init
+```
+
 ### Running Tests
 
 ```

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+### 0.0.11 - Monday 18th April, 2022
+
+-   Provided a new command (init) that will generate an rcg.config.js file.
+
 ### 0.0.10 - Wednesday 27th October, 2021
 
 -   The source folder(s) are generated in case they do not exist already.

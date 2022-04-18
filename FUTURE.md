@@ -5,7 +5,7 @@
 After you have installed rcg, you can call its command-line with npx
 
 ```
-npx rcg --init
+npx rcg init
 ```
 
 This command will do the following:
