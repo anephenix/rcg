@@ -1,6 +1,6 @@
 const {
 	createExampleConfigFile,
-} = require('../test/helpers/generateConfigFile');
+} = require('../lib/helpers/generateConfigFile');
 
 (async () => {
 	await createExampleConfigFile();
