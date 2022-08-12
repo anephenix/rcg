@@ -91,16 +91,14 @@ describe('rcg binary', () => {
 		});
 
 		it('should note that it is loading config options from the rcg.config.js file', async () => {
-			const homeDir = process.env.CI
-				? os.homedir() + '/work/rcg'
-				: os.homedir() + '/Work/anephenix';
+			const homeDir = process.cwd();
 			assert.strictEqual(
 				recordedStdout,
 				`Using configuration settings found at ${exampleConfigFilePath}
 Created files:\n
-${homeDir}/rcg/components/my-test-component/MyTestComponent.jsx
-${homeDir}/rcg/components/my-test-component/MyTestComponent.scss
-${homeDir}/rcg/components/my-test-component/MyTestComponent.test.jsx
+${homeDir}/components/my-test-component/MyTestComponent.jsx
+${homeDir}/components/my-test-component/MyTestComponent.scss
+${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 `
 			);
 			assert.equal(recordedStderr, '');
