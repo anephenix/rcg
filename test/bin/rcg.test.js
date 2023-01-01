@@ -2,7 +2,6 @@
 
 // NPM Dependencies
 const assert = require('assert');
-const os = require('os');
 const path = require('path');
 
 // File Dependencies
