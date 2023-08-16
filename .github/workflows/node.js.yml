@@ -38,6 +38,7 @@ jobs:
     - run: npm run cover
       if: github.event_name != 'pull_request'
     - run: npx nyc report --reporter=lcov
+      if: github.event_name != 'pull_request'
     - run: node scripts/generateConfigFile.js
     - run: ./cc-test-reporter after-build
       if: github.event_name != 'pull_request'
