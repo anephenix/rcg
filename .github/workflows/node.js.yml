@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -36,6 +36,8 @@ jobs:
     - run: chmod +x ./cc-test-reporter
     - run: ./cc-test-reporter before-build
     - run: npm run cover
+      if: github.event_name != 'pull_request'
     - run: npx nyc report --reporter=lcov
     - run: node scripts/generateConfigFile.js
     - run: ./cc-test-reporter after-build
+      if: github.event_name != 'pull_request'
