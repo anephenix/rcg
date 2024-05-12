@@ -31,7 +31,6 @@
 	},
 	"dependencies": {
 		"commander": "^9.4.1",
-		"lint": "^0.8.19",
 		"to-case": "^2.0.0"
 	}
 }
