@@ -13,11 +13,13 @@ const {
 } = require('../../lib/helpers/generateConfigFile');
 
 const seed = async (dirs) => {
-	return await exec(`mkdir -p ${path.join(process.cwd(), ...dirs)}`);
+	const dir = path.join(process.cwd(), ...dirs);
+	return await exec(`mkdir -p ${dir}`);
 };
 
 const cleanup = async (dir) => {
-	return await exec(`rm -rf ${path.join(process.cwd(), dir)}`);
+	const fullPath = path.join(process.cwd(), dir);
+	return await exec(`rm -rf ${fullPath}`);
 };
 
 const removeExampleConfigFile = async () => {
