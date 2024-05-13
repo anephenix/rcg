@@ -3,6 +3,7 @@
 // NPM Dependencies
 const assert = require('assert');
 const path = require('path');
+const { spawnSync } = require('node:child_process');
 
 // File Dependencies
 const { exists, readdir, exec, readFile, unlink } = require('../helpers.js');
@@ -14,12 +15,12 @@ const {
 
 const seed = async (dirs) => {
 	const dir = path.join(process.cwd(), ...dirs);
-	return await exec(`mkdir -p ${dir}`);
+	return spawnSync('mkdir', ['-p', dir]);
 };
 
 const cleanup = async (dir) => {
 	const fullPath = path.join(process.cwd(), dir);
-	return await exec(`rm -rf ${fullPath}`);
+	return spawnSync('rm', ['-rf', fullPath]);
 };
 
 const removeExampleConfigFile = async () => {
