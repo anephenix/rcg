@@ -2,7 +2,7 @@
 
 // NPM Dependencies
 const path = require('path');
-const program = require('commander');
+const { program } = require('commander');
 const loadConfigFileIfExists = require('../lib/helpers/loadConfigFile');
 const {
 	createExampleConfigFile,

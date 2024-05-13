@@ -11,8 +11,8 @@ const {
 } = require('../../../lib/generators/component');
 const { exists, readFile, mkdir, checkAndRemove } = require('../../helpers');
 
-describe('getFileContentForComponent', () => {
-	it('should return the file content for a React component', () => {
+describe('getFileContentForComponent', function() {
+	it('should return the file content for a React component', function() {
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		assert.equal(
@@ -21,7 +21,7 @@ describe('getFileContentForComponent', () => {
 		);
 	});
 
-	it('should allow for custom html to be passed into the component', () => {
+	it('should allow for custom html to be passed into the component', function() {
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		const customDOM = '<div>Welcome here</div>';
@@ -39,7 +39,7 @@ describe('getFileContentForComponent', () => {
 		);
 	});
 
-	it('should enable the user to generate a component for NextJs built-in sass support', () => {
+	it('should enable the user to generate a component for NextJs built-in sass support', function() {
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		const customDOM = null;
@@ -57,7 +57,7 @@ describe('getFileContentForComponent', () => {
 		);
 	});
 
-	it('should enable the user to generate a component for NextJs built-in sass support and custom DOM', () => {
+	it('should enable the user to generate a component for NextJs built-in sass support and custom DOM', function() {
 		const title = 'MyTestComponent';
 		const folderName = 'my-test-component';
 		const customDOM = '<div>Welcome here</div>';
@@ -76,7 +76,7 @@ describe('getFileContentForComponent', () => {
 	});
 });
 
-describe('generateComponentFile', () => {
+describe('generateComponentFile', function() {
 	const title = 'MyTestComponent';
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
@@ -89,21 +89,20 @@ describe('generateComponentFile', () => {
 	const customDOM = '<div>Welcome here</div>';
 
 	beforeEach(
-		async () =>
-			await checkAndRemove(folderPath, [
+		async function() { return await checkAndRemove(folderPath, [
 				filePath,
 				filePathWithCustomJSExtension,
-			])
-	);
-	afterEach(
-		async () =>
-			await checkAndRemove(folderPath, [
-				filePath,
-				filePathWithCustomJSExtension,
-			])
+			]); }
 	);
 
-	it('should create the file for the React Component, based on the name', async () => {
+	afterEach(
+		async function() { return await checkAndRemove(folderPath, [
+				filePath,
+				filePathWithCustomJSExtension,
+			]); }
+	);
+
+	it('should create the file for the React Component, based on the name', async function() {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -117,7 +116,7 @@ describe('generateComponentFile', () => {
 		);
 	});
 
-	it('should also create a file with custom DOM, if custom DOM is passed', async () => {
+	it('should also create a file with custom DOM, if custom DOM is passed', async function() {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -136,7 +135,7 @@ describe('generateComponentFile', () => {
 		);
 	});
 
-	it('can create the file with a custom extension, if a custom extension is passed', async () => {
+	it('can create the file with a custom extension, if a custom extension is passed', async function() {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);

@@ -5,21 +5,21 @@ const path = require('path');
 const generateComponent = require('../index');
 const { exists, cleanup } = require('./helpers');
 
-describe('generateComponent', () => {
+describe('generateComponent', function() {
 	const title = 'MyTestComponent';
 	const folderName = 'my-test-component';
 	const srcFolderPath = process.cwd();
 	const folderPath = path.join(process.cwd(), folderName);
 
-	beforeEach(async () => {
+	beforeEach(async function() {
 		await cleanup(folderPath);
 	});
 
-	afterEach(async () => {
+	afterEach(async function() {
 		await cleanup(folderPath);
 	});
 
-	it('should generate a boilerplate for a react component, given a name and a containing folder', async () => {
+	it('should generate a boilerplate for a react component, given a name and a containing folder', async function() {
 		const filesCreated = await generateComponent(title, srcFolderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);

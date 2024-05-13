@@ -10,14 +10,14 @@ const {
 const { exists, readFile, mkdir, checkAndRemove } = require('../../helpers');
 const { expectedTestContent } = require('../../data');
 
-describe('getFileContentForTestFile', () => {
-	it('should return the file content for a test file for the React component', () => {
+describe('getFileContentForTestFile', function() {
+	it('should return the file content for a test file for the React component', function() {
 		const title = 'MyTestComponent';
 		assert.equal(getFileContentForTestFile(title), expectedTestContent);
 	});
 });
 
-describe('generateTestFile', () => {
+describe('generateTestFile', function() {
 	const title = 'MyTestComponent';
 	const folderName = 'my-test-component';
 	const folderPath = path.join(process.cwd(), folderName);
@@ -29,21 +29,20 @@ describe('generateTestFile', () => {
 	);
 
 	beforeEach(
-		async () =>
-			await checkAndRemove(folderPath, [
+		async function() { return await checkAndRemove(folderPath, [
 				filePath,
 				filePathWithCustomJSExtension,
-			])
-	);
-	afterEach(
-		async () =>
-			await checkAndRemove(folderPath, [
-				filePath,
-				filePathWithCustomJSExtension,
-			])
+			]); }
 	);
 
-	it('should create the test file, based on the name of the component', async () => {
+	afterEach(
+		async function() { return await checkAndRemove(folderPath, [
+				filePath,
+				filePathWithCustomJSExtension,
+			]); }
+	);
+
+	it('should create the test file, based on the name of the component', async function() {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -54,7 +53,7 @@ describe('generateTestFile', () => {
 		assert.equal(getFileContentForTestFile(title), fileContent);
 	});
 
-	it('can create the test file with a custom extension, if a custom extension is passed', async () => {
+	it('can create the test file with a custom extension, if a custom extension is passed', async function() {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);

@@ -9,13 +9,13 @@ const expectedSASSContentWithCustomCSS = (customCSS) => `
 }`;
 
 const expectedComponentContentWithDom = (customDom, nextjsSassSupport) => {
-	// eslint-disable-next-line
+	 
 	let id = `'my-test-component'`;
 	let nextjsStylesVariable = '';
 	let mod = '';
 
 	if (nextjsSassSupport) {
-		// eslint-disable-next-line
+		 
 		id = `{styles['my-test-component']}`;
 		nextjsStylesVariable = 'styles from ';
 		mod = 'module.';
