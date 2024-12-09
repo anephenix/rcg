@@ -27,7 +27,7 @@
 		"eslint-plugin-mocha": "^10.4.3",
 		"globals": "^15.2.0",
 		"jsdoc": "^4.0.0",
-		"mocha": "^10.2.0",
+		"mocha": "^11.0.1",
 		"nyc": "^17.0.0",
 		"pre-commit": "^1.2.2",
 		"prettier": "^3.2.5"
