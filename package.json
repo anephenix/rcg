@@ -33,7 +33,7 @@
 		"prettier": "^3.2.5"
 	},
 	"dependencies": {
-		"commander": "^12.0.0",
+		"commander": "^13.0.0",
 		"to-case": "^2.0.0"
 	}
 }
