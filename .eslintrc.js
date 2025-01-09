@@ -20,4 +20,8 @@ module.exports = {
 		semi: ['error', 'always'],
 	},
 	plugins: ['jest'],
+	ignores: [
+		'coverage',
+		'node_modules'
+	]
 };
