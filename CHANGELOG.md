@@ -1,5 +1,14 @@
 # CHANGELOG
 
+### 0.0.13 - Monday 13th January, 2025
+
+- Updated dependencies
+- Merge pull request #133 from anephenix/dependabot/npm_and_yarn/eslint/js-9.18.0
+- Merge pull request #132 from anephenix/dependabot/npm_and_yarn/eslint-9.18.0
+- Bump @eslint/js from 9.17.0 to 9.18.0
+- Bump eslint from 9.17.0 to 9.18.0
+- Updated copyright year in README
+
 ### 0.0.12 - Thursday 9th January, 2025
 
 - Added scripts for publishing the NPM package automatically
