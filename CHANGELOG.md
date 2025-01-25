@@ -1,5 +1,12 @@
 # CHANGELOG
 
+### 0.0.14 - Saturday 25th January, 2025
+
+- Replaced pre-commit with Husky
+- Update Badges
+- Merge pull request #134 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-28.11.0
+- Bump eslint-plugin-jest from 28.10.0 to 28.11.0
+
 ### 0.0.13 - Monday 13th January, 2025
 
 - Updated dependencies
