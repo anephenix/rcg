@@ -7,8 +7,9 @@
 		"lint": "npx eslint .",
 		"cover": "npx nyc --reporter=lcov npm run test",
 		"prepare": "husky",
-		"prepare-patch-release": "npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
+		"prepare-patch-release": "npm run size && npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
 		"publish-patch-release": "npm run prepare-patch-release && git push origin master && git push --tags",
+		"size": "size-limit",
 		"test": "npx mocha test/**/*",
 		"update-changelog": "node scripts/update-changelog.js"
 	},
@@ -30,10 +31,18 @@
 		"jsdoc": "^4.0.0",
 		"mocha": "^11.0.1",
 		"nyc": "^17.0.0",
-		"prettier": "^3.2.5"
+		"prettier": "^3.2.5",
+		"size-limit": "^10.0.3",
+		"size-limit-preset-node-lib": "^0.3.0"
 	},
 	"dependencies": {
 		"commander": "^13.0.0",
 		"to-case": "^2.0.0"
-	}
+	},
+	"size-limit": [
+		{
+		"path": "index.js",
+		"limit": "10 kB"
+		}
+	]
 }
