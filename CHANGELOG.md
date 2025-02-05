@@ -1,5 +1,17 @@
 # CHANGELOG
 
+### 0.0.15 - Wednesday 5th February, 2025
+
+- Added size checks
+- Merge pull request #138 from anephenix/dependabot/npm_and_yarn/eslint/js-9.19.0
+- Merge pull request #137 from anephenix/dependabot/npm_and_yarn/commander-13.1.0
+- Merge pull request #136 from anephenix/dependabot/npm_and_yarn/eslint-9.19.0
+- Merge pull request #135 from anephenix/dependabot/npm_and_yarn/mocha-11.1.0
+- Bump @eslint/js from 9.18.0 to 9.19.0
+- Bump commander from 13.0.0 to 13.1.0
+- Bump eslint from 9.18.0 to 9.19.0
+- Bump mocha from 11.0.1 to 11.1.0
+
 ### 0.0.14 - Saturday 25th January, 2025
 
 - Replaced pre-commit with Husky
