@@ -1,5 +1,14 @@
 # CHANGELOG
 
+### 0.0.16 - Saturday 15th February, 2025
+
+- Merge pull request #142 from anephenix/dependabot/npm_and_yarn/prettier-3.5.0
+- Merge pull request #140 from anephenix/dependabot/npm_and_yarn/size-limit-11.1.6
+- Merge pull request #139 from anephenix/dependabot/npm_and_yarn/eslint-9.20.0
+- Bump prettier from 3.4.2 to 3.5.0
+- Bump size-limit from 10.0.3 to 11.1.6
+- Bump eslint from 9.19.0 to 9.20.0
+
 ### 0.0.15 - Wednesday 5th February, 2025
 
 - Added size checks
