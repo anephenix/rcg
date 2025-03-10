@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### 0.0.18 - Monday 10th March, 2025
+
+- Updated dependencies
+- Merge pull request #152 from anephenix/dependabot/npm_and_yarn/eslint/js-9.22.0
+- Merge pull request #153 from anephenix/dependabot/npm_and_yarn/eslint-9.22.0
+- Bump eslint from 9.21.0 to 9.22.0
+- Bump @eslint/js from 9.21.0 to 9.22.0
+- Merge pull request #151 from anephenix/dependabot/npm_and_yarn/prettier-3.5.3
+- Bump prettier from 3.5.2 to 3.5.3
+
 ### 0.0.17 - Monday 24th February, 2025
 
 - Merge pull request #149 from anephenix/dependabot/npm_and_yarn/eslint-9.21.0
