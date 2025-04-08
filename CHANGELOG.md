@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### 0.0.19 - Tuesday 8th April, 2025
+
+- Updated dependencies
+- Merge pull request #157 from anephenix/dependabot/npm_and_yarn/eslint-9.24.0
+- Bump eslint from 9.23.0 to 9.24.0
+- Merge pull request #155 from anephenix/dependabot/npm_and_yarn/eslint-9.23.0
+- Merge pull request #154 from anephenix/dependabot/npm_and_yarn/eslint/js-9.23.0
+- Bump eslint from 9.22.0 to 9.23.0
+- Bump @eslint/js from 9.22.0 to 9.23.0
+
 ### 0.0.18 - Monday 10th March, 2025
 
 - Updated dependencies
