@@ -1,5 +1,36 @@
 # CHANGELOG
 
+### 0.0.20 - Monday 26th May, 2025
+
+- ESLint fixes
+- Merge pull request #172 from anephenix/dependabot/npm_and_yarn/globals-16.2.0
+- Merge pull request #171 from anephenix/dependabot/npm_and_yarn/eslint-plugin-mocha-11.1.0
+- Merge pull request #170 from anephenix/dependabot/npm_and_yarn/mocha-11.5.0
+- Bump globals from 16.1.0 to 16.2.0
+- Bump eslint-plugin-mocha from 11.0.0 to 11.1.0
+- Bump mocha from 11.3.0 to 11.5.0
+- Merge pull request #169 from anephenix/dependabot/npm_and_yarn/mocha-11.3.0
+- Merge pull request #167 from anephenix/dependabot/npm_and_yarn/size-limit-preset-node-lib-0.4.0
+- Bump size-limit-preset-node-lib from 0.3.0 to 0.4.0
+- Merge pull request #166 from anephenix/dependabot/npm_and_yarn/eslint-9.27.0
+- Merge pull request #165 from anephenix/dependabot/npm_and_yarn/commander-14.0.0
+- Bump mocha from 11.2.2 to 11.3.0
+- Bump eslint from 9.26.0 to 9.27.0
+- Bump commander from 13.1.0 to 14.0.0
+- Merge pull request #164 from anephenix/dependabot/npm_and_yarn/globals-16.1.0
+- Bump globals from 16.0.0 to 16.1.0
+- Merge pull request #163 from anephenix/dependabot/npm_and_yarn/eslint/js-9.26.0
+- Merge pull request #162 from anephenix/dependabot/npm_and_yarn/eslint-9.26.0
+- Merge pull request #161 from anephenix/dependabot/npm_and_yarn/mocha-11.2.2
+- Bump @eslint/js from 9.25.1 to 9.26.0
+- Bump eslint from 9.25.1 to 9.26.0
+- Bump mocha from 11.1.0 to 11.2.2
+- Merge pull request #160 from anephenix/dependabot/npm_and_yarn/eslint-plugin-mocha-11.0.0
+- Bump eslint-plugin-mocha from 10.5.0 to 11.0.0
+- Merge pull request #158 from anephenix/dependabot/npm_and_yarn/eslint-9.25.0
+- Bump eslint from 9.24.0 to 9.25.0
+- Upgrade GitHub action to use v4 of setup-nodejs
+
 ### 0.0.19 - Tuesday 8th April, 2025
 
 - Updated dependencies
