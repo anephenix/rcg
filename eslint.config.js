@@ -1,15 +1,34 @@
-const globals = require('globals');
-const pluginJs = require('@eslint/js');
-const mochaPlugin = require('eslint-plugin-mocha');
+import globals from 'globals';
+import babelParser from '@babel/eslint-parser';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-module.exports = [
-	{files: ['**/*.js'], languageOptions: {sourceType: 'commonjs'}},
-	{languageOptions: { globals: globals.node}},
-	pluginJs.configs.recommended,
-	mochaPlugin.configs.flat.recommended,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default [
 	{
+		ignores: ['dist/**'], // ✅ Ignore dist folder
+	},
+
+	{
+		languageOptions: {
+			globals: {
+				...globals.node,
+				...globals.mocha,
+			},
+			parser: babelParser,
+			ecmaVersion: 2017,
+			sourceType: 'module',
+			parserOptions: {
+				requireConfigFile: false,
+			},
+		},
+
 		rules: {
-			'mocha/no-setup-in-describe': 'off',
-		}
-	}
+			indent: ['error', 'tab'],
+			'linebreak-style': ['error', 'unix'],
+			semi: ['error', 'always'],
+		},
+	},
 ];

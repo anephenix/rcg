@@ -30,16 +30,16 @@ describe('generateTestFile', function() {
 
 	beforeEach(
 		async function() { return await checkAndRemove(folderPath, [
-				filePath,
-				filePathWithCustomJSExtension,
-			]); }
+			filePath,
+			filePathWithCustomJSExtension,
+		]); }
 	);
 
 	afterEach(
 		async function() { return await checkAndRemove(folderPath, [
-				filePath,
-				filePathWithCustomJSExtension,
-			]); }
+			filePath,
+			filePathWithCustomJSExtension,
+		]); }
 	);
 
 	it('should create the test file, based on the name of the component', async function() {

@@ -90,16 +90,16 @@ describe('generateComponentFile', function() {
 
 	beforeEach(
 		async function() { return await checkAndRemove(folderPath, [
-				filePath,
-				filePathWithCustomJSExtension,
-			]); }
+			filePath,
+			filePathWithCustomJSExtension,
+		]); }
 	);
 
 	afterEach(
 		async function() { return await checkAndRemove(folderPath, [
-				filePath,
-				filePathWithCustomJSExtension,
-			]); }
+			filePath,
+			filePathWithCustomJSExtension,
+		]); }
 	);
 
 	it('should create the file for the React Component, based on the name', async function() {
