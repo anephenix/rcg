@@ -1,5 +1,22 @@
 # CHANGELOG
 
+### 0.0.21 - Tuesday 10th June, 2025
+
+- Merge pull request #178 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-28.13.0
+- Merge pull request #177 from anephenix/dependabot/npm_and_yarn/babel/eslint-parser-7.27.5
+- Merge pull request #176 from anephenix/dependabot/npm_and_yarn/mocha-11.6.0
+- Bump eslint-plugin-jest from 28.12.0 to 28.13.0
+- Bump @babel/eslint-parser from 7.27.1 to 7.27.5
+- Bump mocha from 11.5.0 to 11.6.0
+- Merge branch 'master' of github.com:anephenix/rcg
+- Modified GitHub workflow permissions
+- Merge pull request #175 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-28.12.0
+- Merge pull request #174 from anephenix/dependabot/npm_and_yarn/eslint/js-9.28.0
+- Merge pull request #173 from anephenix/dependabot/npm_and_yarn/eslint-9.28.0
+- Bump eslint-plugin-jest from 28.11.0 to 28.12.0
+- Bump @eslint/js from 9.27.0 to 9.28.0
+- Bump eslint from 9.27.0 to 9.28.0
+
 ### 0.0.20 - Monday 26th May, 2025
 
 - ESLint fixes
