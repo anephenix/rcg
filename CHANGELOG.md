@@ -1,5 +1,59 @@
 # CHANGELOG
 
+### 0.0.22 - Monday 6th October, 2025
+
+- Updated the package-lock.json file
+- Merge pull request #204 from anephenix/dependabot/npm_and_yarn/eslint-9.36.0
+- Merge pull request #203 from anephenix/dependabot/npm_and_yarn/eslint/js-9.36.0
+- Bump eslint from 9.35.0 to 9.36.0
+- Bump @eslint/js from 9.35.0 to 9.36.0
+- Merge pull request #202 from anephenix/dependabot/npm_and_yarn/globals-16.4.0
+- Merge pull request #201 from anephenix/dependabot/npm_and_yarn/commander-14.0.1
+- Bump globals from 16.3.0 to 16.4.0
+- Bump commander from 14.0.0 to 14.0.1
+- Merge pull request #200 from anephenix/dependabot/npm_and_yarn/eslint/js-9.35.0
+- Merge pull request #199 from anephenix/dependabot/npm_and_yarn/mocha-11.7.2
+- Merge pull request #198 from anephenix/dependabot/npm_and_yarn/babel/eslint-parser-7.28.4
+- Merge pull request #197 from anephenix/dependabot/npm_and_yarn/eslint-9.35.0
+- Bump @eslint/js from 9.34.0 to 9.35.0
+- Bump mocha from 11.7.1 to 11.7.2
+- Bump @babel/eslint-parser from 7.28.0 to 7.28.4
+- Bump eslint from 9.34.0 to 9.35.0
+- Merge pull request #195 from anephenix/dependabot/npm_and_yarn/eslint-9.34.0
+- Bump eslint from 9.33.0 to 9.34.0
+- Merge pull request #194 from anephenix/dependabot/npm_and_yarn/eslint-9.33.0
+- Merge pull request #193 from anephenix/dependabot/npm_and_yarn/eslint/js-9.33.0
+- Bump eslint from 9.32.0 to 9.33.0
+- Bump @eslint/js from 9.32.0 to 9.33.0
+- Merge pull request #192 from anephenix/dependabot/npm_and_yarn/eslint-9.32.0
+- Bump eslint from 9.31.0 to 9.32.0
+- Merge pull request #191 from anephenix/dependabot/npm_and_yarn/eslint/js-9.32.0
+- Bump @eslint/js from 9.31.0 to 9.32.0
+- Merge pull request #190 from anephenix/dependabot/npm_and_yarn/eslint-9.31.0
+- Merge pull request #189 from anephenix/dependabot/npm_and_yarn/eslint/js-9.31.0
+- Bump eslint from 9.30.1 to 9.31.0
+- Bump @eslint/js from 9.30.1 to 9.31.0
+- Updated dependencies
+- Merge pull request #188 from anephenix/dependabot/npm_and_yarn/mocha-11.7.1
+- Merge pull request #187 from anephenix/dependabot/npm_and_yarn/eslint/js-9.30.0
+- Merge pull request #186 from anephenix/dependabot/npm_and_yarn/eslint-9.30.0
+- Merge pull request #185 from anephenix/dependabot/npm_and_yarn/prettier-3.6.2
+- Bump mocha from 11.7.0 to 11.7.1
+- Bump @eslint/js from 9.29.0 to 9.30.0
+- Bump eslint from 9.29.0 to 9.30.0
+- Bump prettier from 3.6.0 to 3.6.2
+- Merge pull request #184 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-29.0.1
+- Merge pull request #183 from anephenix/dependabot/npm_and_yarn/prettier-3.6.0
+- Merge pull request #182 from anephenix/dependabot/npm_and_yarn/mocha-11.7.0
+- Bump eslint-plugin-jest from 28.13.0 to 29.0.1
+- Bump prettier from 3.5.3 to 3.6.0
+- Bump mocha from 11.6.0 to 11.7.0
+- Merge pull request #181 from anephenix/dependabot/npm_and_yarn/eslint-9.29.0
+- Merge pull request #180 from anephenix/dependabot/npm_and_yarn/eslint/js-9.29.0
+- Bump eslint from 9.28.0 to 9.29.0
+- Bump @eslint/js from 9.28.0 to 9.29.0
+- Removed CodeClimate and updated dependencies
+
 ### 0.0.21 - Tuesday 10th June, 2025
 
 - Merge pull request #178 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-28.13.0
