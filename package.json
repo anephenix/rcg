@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"lint": "npx eslint .",
+		"lint:package": "npx publint",
 		"cover": "npx nyc --reporter=lcov npm run test",
 		"prepare": "husky",
 		"prepare-patch-release": "npm run size && npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
@@ -33,6 +34,7 @@
 		"mocha": "^11.0.1",
 		"nyc": "^17.0.0",
 		"prettier": "^3.2.5",
+		"publint": "^0.3.14",
 		"size-limit": "^11.1.6",
 		"size-limit-preset-node-lib": "^0.4.0"
 	},
