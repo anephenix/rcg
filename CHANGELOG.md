@@ -1,5 +1,19 @@
 # CHANGELOG
 
+### 0.0.23 - Wednesday 8th October, 2025
+
+- Added publint to verify the package.json and some tweaks
+- Added publint to verify the package.json
+- Keep calm and commit
+- Merge pull request #208 from anephenix/dependabot/npm_and_yarn/eslint-9.37.0
+- Merge pull request #207 from anephenix/dependabot/npm_and_yarn/mocha-11.7.4
+- Merge pull request #206 from anephenix/dependabot/npm_and_yarn/eslint/js-9.37.0
+- Merge pull request #205 from anephenix/dependabot/npm_and_yarn/eslint-plugin-mocha-11.2.0
+- Bump eslint from 9.36.0 to 9.37.0
+- Bump mocha from 11.7.2 to 11.7.4
+- Bump @eslint/js from 9.36.0 to 9.37.0
+- Bump eslint-plugin-mocha from 11.1.0 to 11.2.0
+
 ### 0.0.22 - Monday 6th October, 2025
 
 - Updated the package-lock.json file
