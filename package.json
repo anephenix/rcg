@@ -3,6 +3,14 @@
 	"version": "0.0.22",
 	"description": "React Component Generator",
 	"main": "index.js",
+	"type": "commonjs",
+	"files": [
+		"bin",
+		"lib",
+		"index.js",
+		"README.md",
+		"SECURITY.md"
+	],
 	"scripts": {
 		"lint": "npx eslint .",
 		"lint:package": "npx publint",
