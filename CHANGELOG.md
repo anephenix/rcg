@@ -1,5 +1,24 @@
 # CHANGELOG
 
+### 0.0.25 - Sunday 4th January, 2026
+
+- Tweaks for new publish workflow
+- Merge pull request #238 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-29.11.1
+- Bump eslint-plugin-jest from 29.9.0 to 29.11.1
+- Updated dependencies
+- Merge pull request #237 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-29.9.0
+- Bump eslint-plugin-jest from 29.5.0 to 29.9.0
+- Merge pull request #236 from anephenix/dependabot/npm_and_yarn/eslint-9.39.2
+- Bump eslint from 9.39.1 to 9.39.2
+- Merge pull request #234 from anephenix/dependabot/npm_and_yarn/eslint/js-9.39.2
+- Merge pull request #233 from anephenix/dependabot/npm_and_yarn/publint-0.3.16
+- Merge pull request #235 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-29.5.0
+- Bump eslint-plugin-jest from 29.2.1 to 29.5.0
+- Bump @eslint/js from 9.39.1 to 9.39.2
+- Bump publint from 0.3.15 to 0.3.16
+- Merge pull request #232 from anephenix/dependabot/npm_and_yarn/prettier-3.7.4
+- Bump prettier from 3.7.3 to 3.7.4
+
 ### 0.0.24 - Wednesday 3rd December, 2025
 
 - Updated license
