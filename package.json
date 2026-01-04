@@ -22,6 +22,14 @@
 		"test": "npx mocha test/**/*",
 		"update-changelog": "node scripts/update-changelog.js"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/anephenix/rcg.git"
+	},
+	"homepage": "https://github.com/anephenix/rcg",
+	"bugs": {
+		"url": "https://github.com/anephenix/rcg/issues"
+	},
 	"keywords": [
 		"React",
 		"Component",
