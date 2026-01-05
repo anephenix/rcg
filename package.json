@@ -45,7 +45,7 @@
 		"eslint": "^9.2.0",
 		"eslint-plugin-jest": "^29.0.1",
 		"eslint-plugin-mocha": "^11.0.0",
-		"globals": "^16.0.0",
+		"globals": "^17.0.0",
 		"husky": "^9.1.7",
 		"jsdoc": "^4.0.0",
 		"mocha": "^11.0.1",
