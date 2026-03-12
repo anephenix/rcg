@@ -1,47 +1,48 @@
 // Dependencies
-const assert = require('assert');
-const path = require('path');
+const assert = require("assert");
+const path = require("path");
 const {
 	expectedSASSContent,
 	expectedSASSContentWithCustomCSS,
-} = require('../../data');
+} = require("../../data");
 const {
 	getFileContentForStyleFile,
 	generateStyleFile,
-} = require('../../../lib/generators/style');
-const { exists, readFile, mkdir, checkAndRemove } = require('../../helpers');
+} = require("../../../lib/generators/style");
+const { exists, readFile, mkdir, checkAndRemove } = require("../../helpers");
 
-describe('getFileContentForStyleFile', function() {
-	it('should return the file content for a SASS file', function() {
-		const folderName = 'my-test-component';
-		assert.equal(
-			getFileContentForStyleFile(folderName),
-			expectedSASSContent
-		);
+describe("getFileContentForStyleFile", function () {
+	it("should return the file content for a SASS file", function () {
+		const folderName = "my-test-component";
+		assert.equal(getFileContentForStyleFile(folderName), expectedSASSContent);
 	});
 
-	it('should allow for custom CSS to be passed into the file content for a SASS file', function() {
-		const folderName = 'my-test-component';
-		const customCSS = 'p { color: red; }';
+	it("should allow for custom CSS to be passed into the file content for a SASS file", function () {
+		const folderName = "my-test-component";
+		const customCSS = "p { color: red; }";
 		assert.equal(
 			getFileContentForStyleFile(folderName, customCSS),
-			expectedSASSContentWithCustomCSS(customCSS)
+			expectedSASSContentWithCustomCSS(customCSS),
 		);
 	});
 });
 
-describe('generateStyleFile', function() {
-	const title = 'MyTestComponent';
-	const folderName = 'my-test-component';
+describe("generateStyleFile", function () {
+	const title = "MyTestComponent";
+	const folderName = "my-test-component";
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.scss`);
-	const customCSS = 'p { color: red;}';
+	const customCSS = "p { color: red;}";
 
-	beforeEach(async function() { return await checkAndRemove(folderPath, [filePath]); });
+	beforeEach(async function () {
+		return await checkAndRemove(folderPath, [filePath]);
+	});
 
-	afterEach(async function() { return await checkAndRemove(folderPath, [filePath]); });
+	afterEach(async function () {
+		return await checkAndRemove(folderPath, [filePath]);
+	});
 
-	it('should create the style file, based on the name of the component', async function() {
+	it("should create the style file, based on the name of the component", async function () {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -52,7 +53,7 @@ describe('generateStyleFile', function() {
 		assert.equal(getFileContentForStyleFile(folderName), fileContent);
 	});
 
-	it('should also create a file with custom CSS, if custom CSS is passed', async function() {
+	it("should also create a file with custom CSS, if custom CSS is passed", async function () {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -62,11 +63,11 @@ describe('generateStyleFile', function() {
 		const fileContent = await readFile(filePath);
 		assert.equal(
 			getFileContentForStyleFile(folderName, customCSS),
-			fileContent
+			fileContent,
 		);
 	});
 
-	it('should enable the user to generate a style file for NextJs built-in sass support', async function() {
+	it("should enable the user to generate a style file for NextJs built-in sass support", async function () {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);

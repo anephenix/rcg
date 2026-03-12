@@ -9,18 +9,16 @@ const expectedSASSContentWithCustomCSS = (customCSS) => `
 }`;
 
 const expectedComponentContentWithDom = (customDom, nextjsSassSupport) => {
-	 
 	let id = `'my-test-component'`;
-	let nextjsStylesVariable = '';
-	let mod = '';
+	let nextjsStylesVariable = "";
+	let mod = "";
 
 	if (nextjsSassSupport) {
-		 
 		id = `{styles['my-test-component']}`;
-		nextjsStylesVariable = 'styles from ';
-		mod = 'module.';
+		nextjsStylesVariable = "styles from ";
+		mod = "module.";
 	}
-	let endDiv = ' />';
+	let endDiv = " />";
 	if (customDom) {
 		endDiv = `>${customDom}</div>`;
 	}

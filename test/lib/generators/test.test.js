@@ -1,48 +1,48 @@
 // NPM Dependencies
-const assert = require('assert');
-const path = require('path');
+const assert = require("assert");
+const path = require("path");
 
 // File Dependencies
 const {
 	getFileContentForTestFile,
 	generateTestFile,
-} = require('../../../lib/generators/test');
-const { exists, readFile, mkdir, checkAndRemove } = require('../../helpers');
-const { expectedTestContent } = require('../../data');
+} = require("../../../lib/generators/test");
+const { exists, readFile, mkdir, checkAndRemove } = require("../../helpers");
+const { expectedTestContent } = require("../../data");
 
-describe('getFileContentForTestFile', function() {
-	it('should return the file content for a test file for the React component', function() {
-		const title = 'MyTestComponent';
+describe("getFileContentForTestFile", function () {
+	it("should return the file content for a test file for the React component", function () {
+		const title = "MyTestComponent";
 		assert.equal(getFileContentForTestFile(title), expectedTestContent);
 	});
 });
 
-describe('generateTestFile', function() {
-	const title = 'MyTestComponent';
-	const folderName = 'my-test-component';
+describe("generateTestFile", function () {
+	const title = "MyTestComponent";
+	const folderName = "my-test-component";
 	const folderPath = path.join(process.cwd(), folderName);
 	const filePath = path.join(folderPath, `${title}.test.js`);
-	const customJSExtension = 'jsx';
+	const customJSExtension = "jsx";
 	const filePathWithCustomJSExtension = path.join(
 		folderPath,
-		`${title}.test.${customJSExtension}`
+		`${title}.test.${customJSExtension}`,
 	);
 
-	beforeEach(
-		async function() { return await checkAndRemove(folderPath, [
+	beforeEach(async function () {
+		return await checkAndRemove(folderPath, [
 			filePath,
 			filePathWithCustomJSExtension,
-		]); }
-	);
+		]);
+	});
 
-	afterEach(
-		async function() { return await checkAndRemove(folderPath, [
+	afterEach(async function () {
+		return await checkAndRemove(folderPath, [
 			filePath,
 			filePathWithCustomJSExtension,
-		]); }
-	);
+		]);
+	});
 
-	it('should create the test file, based on the name of the component', async function() {
+	it("should create the test file, based on the name of the component", async function () {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -53,7 +53,7 @@ describe('generateTestFile', function() {
 		assert.equal(getFileContentForTestFile(title), fileContent);
 	});
 
-	it('can create the test file with a custom extension, if a custom extension is passed', async function() {
+	it("can create the test file with a custom extension, if a custom extension is passed", async function () {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);

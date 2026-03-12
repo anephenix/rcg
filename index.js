@@ -1,8 +1,8 @@
 // NPM Dependencies
-const to = require('to-case');
+const to = require("to-case");
 
 // File Dependencies
-const { generateComponentFiles } = require('./lib');
+const { generateComponentFiles } = require("./lib");
 
 /*
 	Generates the React component's files
@@ -14,7 +14,7 @@ const generateComponent = async (
 	customCSS,
 	customJSExtension,
 	customCssExtension,
-	nextjsSassSupport
+	nextjsSassSupport,
 ) => {
 	const title = to.pascal(componentName);
 	const folderName = to.slug(componentName);

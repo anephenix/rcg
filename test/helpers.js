@@ -1,7 +1,7 @@
-const fs = require('fs');
-const util = require('util');
-const path = require('path');
-const childProcess = require('child_process');
+const fs = require("fs");
+const util = require("util");
+const path = require("path");
+const childProcess = require("child_process");
 const writeFile = util.promisify(fs.writeFile);
 
 // Promisified functions

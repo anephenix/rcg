@@ -1,51 +1,45 @@
 // NPM Dependencies
-const assert = require('assert');
-const path = require('path');
+const assert = require("assert");
+const path = require("path");
 
 // File Dependencies
-const { generateComponentFiles } = require('../../lib');
-const { exists, cleanup } = require('../helpers');
+const { generateComponentFiles } = require("../../lib");
+const { exists, cleanup } = require("../helpers");
 
-describe('generateComponentFiles', function() {
-	const title = 'MyTestComponent';
-	const folderName = 'my-test-component';
+describe("generateComponentFiles", function () {
+	const title = "MyTestComponent";
+	const folderName = "my-test-component";
 	const srcFolderPath = process.cwd();
 	const folderPath = path.join(process.cwd(), folderName);
 
-	beforeEach(async function() {
+	beforeEach(async function () {
 		await cleanup(folderPath);
 	});
 
-	afterEach(async function() {
+	afterEach(async function () {
 		await cleanup(folderPath);
 	});
 
-	it('should create a containing folder and a set of files for a React component', async function() {
+	it("should create a containing folder and a set of files for a React component", async function () {
 		await generateComponentFiles({ title, folderName, srcFolderPath });
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
-		const componentExists = await exists(
-			path.join(folderPath, `${title}.js`)
-		);
+		const componentExists = await exists(path.join(folderPath, `${title}.js`));
 		assert(componentExists);
-		const testExists = await exists(
-			path.join(folderPath, `${title}.test.js`)
-		);
+		const testExists = await exists(path.join(folderPath, `${title}.test.js`));
 		assert(testExists);
-		const styleExists = await exists(
-			path.join(folderPath, `${title}.scss`)
-		);
+		const styleExists = await exists(path.join(folderPath, `${title}.scss`));
 		assert(styleExists);
 	});
 
-	it('should generate the source folder path if it does not exist', async function() {
-		const otherTitle = 'MyOtherTestComponent';
-		const otherFolderName = 'my-other-test-component';
-		const otherSrcFolderPath = path.join(process.cwd(), 'new-folder');
+	it("should generate the source folder path if it does not exist", async function () {
+		const otherTitle = "MyOtherTestComponent";
+		const otherFolderName = "my-other-test-component";
+		const otherSrcFolderPath = path.join(process.cwd(), "new-folder");
 		const otherFolderPath = path.join(
 			process.cwd(),
-			'new-folder',
-			otherFolderName
+			"new-folder",
+			otherFolderName,
 		);
 
 		await generateComponentFiles({
@@ -58,15 +52,15 @@ describe('generateComponentFiles', function() {
 		const folderExists = await exists(otherFolderPath);
 		assert(folderExists);
 		const componentExists = await exists(
-			path.join(otherFolderPath, `${otherTitle}.js`)
+			path.join(otherFolderPath, `${otherTitle}.js`),
 		);
 		assert(componentExists);
 		const testExists = await exists(
-			path.join(otherFolderPath, `${otherTitle}.test.js`)
+			path.join(otherFolderPath, `${otherTitle}.test.js`),
 		);
 		assert(testExists);
 		const styleExists = await exists(
-			path.join(otherFolderPath, `${otherTitle}.scss`)
+			path.join(otherFolderPath, `${otherTitle}.scss`),
 		);
 		assert(styleExists);
 
