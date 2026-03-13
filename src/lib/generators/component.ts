@@ -1,12 +1,16 @@
-// Dependencies
-const createFile = require("../helpers/createFile");
+import createFile from "../helpers/createFile.js";
 
-/**
- * Defines the DOM to put inside of the React component, depending on the
- * folder name, whether the component should support Next.js' built-in SASS
- * support, and whether custom DOM was supplied.
- */
-const getDOM = ({ folderName, nextjsSassSupport, customDOM }) => {
+interface GetDOMOptions {
+	folderName: string;
+	nextjsSassSupport?: boolean | null;
+	customDOM?: string | null;
+}
+
+const getDOM = ({
+	folderName,
+	nextjsSassSupport,
+	customDOM,
+}: GetDOMOptions): string => {
 	let element = `<div id='${folderName}' />`;
 	if (nextjsSassSupport) element = `<div id={styles['${folderName}']} />`;
 	if (customDOM) element = `<div id='${folderName}'>${customDOM}</div>`;
@@ -15,36 +19,49 @@ const getDOM = ({ folderName, nextjsSassSupport, customDOM }) => {
 	return element;
 };
 
-const fileContentTemplate = ({ importStatement, title, element }) => {
+interface FileContentTemplateOptions {
+	importStatement: string;
+	title: string;
+	element: string;
+}
+
+const fileContentTemplate = ({
+	importStatement,
+	title,
+	element,
+}: FileContentTemplateOptions): string => {
 	return `
 ${importStatement}
 
 const ${title} = () => (${element});
-			
+
 export default ${title};`;
 };
 
-/*
-	Generates the file content for the React component
-*/
 const getFileContentForComponent = (
-	title,
-	folderName,
-	customDOM,
-	customCssExtension,
-	nextjsSassSupport,
-) => {
+	title: string,
+	folderName: string,
+	customDOM?: string | null,
+	customCssExtension?: string | null,
+	nextjsSassSupport?: boolean | null,
+): string => {
 	const element = getDOM({ folderName, nextjsSassSupport, customDOM });
 	const nextJsStylesVariable = nextjsSassSupport ? "styles from " : "";
 	const fileExtension = nextjsSassSupport ? "module.scss" : customCssExtension;
 	const importStatement = `import ${nextJsStylesVariable}'./${title}.${fileExtension}';`;
 	return fileContentTemplate({ importStatement, title, element });
-	// The text template for the file content
 };
 
-/*
-	Generates the React component file
-*/
+interface GenerateComponentFileOptions {
+	title: string;
+	folderName: string;
+	folderPath: string;
+	customDOM?: string | null;
+	customJSExtension?: string | null;
+	customCssExtension?: string | null;
+	nextjsSassSupport?: boolean | null;
+}
+
 const generateComponentFile = async ({
 	title,
 	folderName,
@@ -53,9 +70,9 @@ const generateComponentFile = async ({
 	customJSExtension,
 	customCssExtension,
 	nextjsSassSupport,
-}) => {
-	if (!customJSExtension) customJSExtension = "js";
-	const fileName = `${title}.${customJSExtension}`;
+}: GenerateComponentFileOptions): Promise<string> => {
+	const jsExtension = customJSExtension || "js";
+	const fileName = `${title}.${jsExtension}`;
 	const fileContent = getFileContentForComponent(
 		title,
 		folderName,
@@ -66,4 +83,4 @@ const generateComponentFile = async ({
 	return await createFile(folderPath, fileName, fileContent);
 };
 
-module.exports = { getFileContentForComponent, generateComponentFile };
+export { getFileContentForComponent, generateComponentFile };

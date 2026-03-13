@@ -1,25 +1,22 @@
-// NPM Dependencies
-const util = require("util");
-const fs = require("fs");
-const path = require("path");
-
-// File Dependencies
-const {
+import { promises as fs } from "fs";
+import path from "path";
+import {
 	generateComponentFile,
-	generateTestFile,
 	generateStyleFile,
-} = require("./generators");
+	generateTestFile,
+} from "./generators/index.js";
 
-/* Promisified functions */
-const mkdir = util.promisify(fs.mkdir);
+interface GenerateComponentFilesOptions {
+	title: string;
+	folderName: string;
+	srcFolderPath: string;
+	customDOM?: string | null;
+	customCSS?: string | null;
+	customJSExtension?: string | null;
+	customCssExtension?: string | null;
+	nextjsSassSupport?: boolean;
+}
 
-/*
-	This generates the files for the React component:
-
-	- The React component
-	- The Styling file
-	- The test file for the React component
-*/
 const generateComponentFiles = async ({
 	title,
 	folderName,
@@ -29,10 +26,10 @@ const generateComponentFiles = async ({
 	customJSExtension,
 	customCssExtension,
 	nextjsSassSupport,
-}) => {
+}: GenerateComponentFilesOptions): Promise<string[]> => {
 	const folderPath = path.join(srcFolderPath, folderName);
-	await mkdir(folderPath, { recursive: true });
-	const filesCreated = [];
+	await fs.mkdir(folderPath, { recursive: true });
+	const filesCreated: string[] = [];
 	const styleFilePath = await generateStyleFile({
 		title,
 		folderName,
@@ -62,6 +59,4 @@ const generateComponentFiles = async ({
 	return filesCreated;
 };
 
-module.exports = {
-	generateComponentFiles,
-};
+export { generateComponentFiles };

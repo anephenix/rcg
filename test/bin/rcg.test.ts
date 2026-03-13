@@ -1,35 +1,38 @@
-// This file tests the rcg binary
-
-// NPM Dependencies
-const assert = require("assert");
-const path = require("path");
-const { spawnSync } = require("node:child_process");
-
-// File Dependencies
-const { exists, readdir, exec, readFile, unlink } = require("../helpers.js");
-const { version } = require("../../package.json");
-const {
-	exampleConfigFilePath,
+import { spawnSync } from "node:child_process";
+import assert from "assert";
+import path from "path";
+import {
+	afterAll,
+	afterEach,
+	beforeAll,
+	beforeEach,
+	describe,
+	it,
+} from "vitest";
+import {
 	createExampleConfigFile,
-} = require("../../lib/helpers/generateConfigFile");
+	exampleConfigFilePath,
+} from "../../dist/lib/helpers/generateConfigFile.js";
+import { version } from "../../package.json";
+import { exec, exists, readdir, readFile, unlink } from "../helpers";
 
-const seed = async (dirs) => {
+const seed = (dirs: string[]): void => {
 	const dir = path.join(process.cwd(), ...dirs);
-	return spawnSync("mkdir", ["-p", dir]);
+	spawnSync("mkdir", ["-p", dir]);
 };
 
-const cleanup = async (dir) => {
+const cleanup = (dir: string): void => {
 	const fullPath = path.join(process.cwd(), dir);
-	return spawnSync("rm", ["-rf", fullPath]);
+	spawnSync("rm", ["-rf", fullPath]);
 };
 
-const removeExampleConfigFile = async () => {
+const removeExampleConfigFile = async (): Promise<void> => {
 	await unlink(exampleConfigFilePath);
 };
 
-describe("rcg binary", function () {
-	describe("init", function () {
-		it("should create an example config file in the current working directory", async function () {
+describe("rcg binary", () => {
+	describe("init", () => {
+		it("should create an example config file in the current working directory", async () => {
 			const command = "./bin/rcg init";
 			const { stderr } = await exec(command);
 			assert.equal(stderr, "");
@@ -39,7 +42,7 @@ describe("rcg binary", function () {
 		});
 	});
 
-	describe("default, no config file present", function () {
+	describe("default, no config file present", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const folderPath = path.join(
@@ -49,15 +52,15 @@ describe("rcg binary", function () {
 			folderName,
 		);
 
-		beforeEach(async function () {
-			return await seed(["src", "components"]);
+		beforeEach(async () => {
+			seed(["src", "components"]);
 		});
 
-		afterEach(async function () {
-			return await cleanup("src");
+		afterEach(async () => {
+			cleanup(path.join("src", "components"));
 		});
 
-		it("should create a component with a given name in the src/components directory", async function () {
+		it("should create a component with a given name in the src/components directory", async () => {
 			const command = `./bin/rcg ${title}`;
 			const { stderr } = await exec(command);
 			assert.equal(stderr, "");
@@ -75,29 +78,29 @@ describe("rcg binary", function () {
 		});
 	});
 
-	describe("default, config file present", function () {
+	describe("default, config file present", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const folderPath = path.join(process.cwd(), "components", folderName);
 
 		const command = `./bin/rcg ${title} --jsExtension=jsx`;
-		let recordedStdout = null;
-		let recordedStderr = null;
+		let recordedStdout: string | null = null;
+		let recordedStderr: string | null = null;
 
-		before(async function () {
-			await seed(["components"]);
+		beforeAll(async () => {
+			seed(["components"]);
 			await createExampleConfigFile();
 			const { stdout, stderr } = await exec(command);
 			recordedStdout = stdout;
 			recordedStderr = stderr;
 		});
 
-		after(async function () {
-			await cleanup("components");
+		afterAll(async () => {
+			cleanup("components");
 			await removeExampleConfigFile();
 		});
 
-		it("should note that it is loading config options from the rcg.config.js file", async function () {
+		it("should note that it is loading config options from the rcg.config.js file", async () => {
 			const homeDir = process.cwd();
 			assert.strictEqual(
 				recordedStdout,
@@ -111,12 +114,12 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 			assert.equal(recordedStderr, "");
 		});
 
-		it("should create the component in the folder path specified in the rcg.config.js file", async function () {
+		it("should create the component in the folder path specified in the rcg.config.js file", async () => {
 			const folderExists = await exists(folderPath);
 			assert(folderExists);
 		});
 
-		it("should create the files with the file extension specified in the command line arguments", async function () {
+		it("should create the files with the file extension specified in the command line arguments", async () => {
 			const files = await readdir(folderPath);
 			const expectedFiles = [
 				`${title}.jsx`,
@@ -129,29 +132,29 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 		});
 	});
 
-	describe("--version", function () {
-		it("should return the version of the program", async function () {
+	describe("--version", () => {
+		it("should return the version of the program", async () => {
 			const command = "./bin/rcg --version";
 			const { stdout } = await exec(command);
 			assert.equal(stdout, `${version}\n`);
 		});
 	});
 
-	describe("--directory", function () {
+	describe("--directory", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const directory = "pages";
 		const folderPath = path.join(process.cwd(), directory, folderName);
 
-		beforeEach(async function () {
-			return await seed([directory]);
+		beforeEach(async () => {
+			seed([directory]);
 		});
 
-		afterEach(async function () {
-			return await cleanup(directory);
+		afterEach(async () => {
+			cleanup(directory);
 		});
 
-		it("should create a component at the specified directory", async function () {
+		it("should create a component at the specified directory", async () => {
 			const command = `./bin/rcg ${title} --directory ${directory}`;
 			const { stderr } = await exec(command);
 			assert.equal(stderr, "");
@@ -169,7 +172,7 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 		});
 	});
 
-	describe("--jsExtension", function () {
+	describe("--jsExtension", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const folderPath = path.join(
@@ -179,15 +182,15 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 			folderName,
 		);
 
-		beforeEach(async function () {
-			return await seed(["src", "components"]);
+		beforeEach(async () => {
+			seed(["src", "components"]);
 		});
 
-		afterEach(async function () {
-			return await cleanup("src");
+		afterEach(async () => {
+			cleanup(path.join("src", "components"));
 		});
 
-		it("should create a component with a custom file extension on the end, as well as the test file extension", async function () {
+		it("should create a component with a custom file extension on the end, as well as the test file extension", async () => {
 			const command = `./bin/rcg ${title} --jsExtension jsx`;
 			const { stderr } = await exec(command);
 			assert.equal(stderr, "");
@@ -201,7 +204,7 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 		});
 	});
 
-	describe("--cssExtension", function () {
+	describe("--cssExtension", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const folderPath = path.join(
@@ -211,15 +214,15 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 			folderName,
 		);
 
-		beforeEach(async function () {
-			return await seed(["src", "components"]);
+		beforeEach(async () => {
+			seed(["src", "components"]);
 		});
 
-		afterEach(async function () {
-			return await cleanup("src");
+		afterEach(async () => {
+			cleanup(path.join("src", "components"));
 		});
 
-		it("should create a component with a custom file extension on the end", async function () {
+		it("should create a component with a custom file extension on the end", async () => {
 			const command = `./bin/rcg ${title} --cssExtension style.js`;
 			const { stderr } = await exec(command);
 			assert.equal(stderr, "");
@@ -238,7 +241,7 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 		});
 	});
 
-	describe("universal behaviour", function () {
+	describe("universal behaviour", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const folderPath = path.join(
@@ -248,15 +251,15 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 			folderName,
 		);
 
-		beforeEach(async function () {
-			return await seed(["src", "components"]);
+		beforeEach(async () => {
+			seed(["src", "components"]);
 		});
 
-		afterEach(async function () {
-			return await cleanup("src");
+		afterEach(async () => {
+			cleanup(path.join("src", "components"));
 		});
 
-		it("should log all of the files that were created after executing the binary", async function () {
+		it("should log all of the files that were created after executing the binary", async () => {
 			const command = `./bin/rcg ${title}`;
 			const { stdout, stderr } = await exec(command);
 

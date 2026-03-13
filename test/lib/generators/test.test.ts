@@ -1,23 +1,21 @@
-// NPM Dependencies
-const assert = require("assert");
-const path = require("path");
-
-// File Dependencies
-const {
-	getFileContentForTestFile,
+import assert from "assert";
+import path from "path";
+import { afterEach, beforeEach, describe, it } from "vitest";
+import {
 	generateTestFile,
-} = require("../../../lib/generators/test");
-const { exists, readFile, mkdir, checkAndRemove } = require("../../helpers");
-const { expectedTestContent } = require("../../data");
+	getFileContentForTestFile,
+} from "../../../dist/lib/generators/test.js";
+import { expectedTestContent } from "../../data";
+import { checkAndRemove, exists, mkdir, readFile } from "../../helpers";
 
-describe("getFileContentForTestFile", function () {
-	it("should return the file content for a test file for the React component", function () {
+describe("getFileContentForTestFile", () => {
+	it("should return the file content for a test file for the React component", () => {
 		const title = "MyTestComponent";
 		assert.equal(getFileContentForTestFile(title), expectedTestContent);
 	});
 });
 
-describe("generateTestFile", function () {
+describe("generateTestFile", () => {
 	const title = "MyTestComponent";
 	const folderName = "my-test-component";
 	const folderPath = path.join(process.cwd(), folderName);
@@ -28,21 +26,21 @@ describe("generateTestFile", function () {
 		`${title}.test.${customJSExtension}`,
 	);
 
-	beforeEach(async function () {
+	beforeEach(async () => {
 		return await checkAndRemove(folderPath, [
 			filePath,
 			filePathWithCustomJSExtension,
 		]);
 	});
 
-	afterEach(async function () {
+	afterEach(async () => {
 		return await checkAndRemove(folderPath, [
 			filePath,
 			filePathWithCustomJSExtension,
 		]);
 	});
 
-	it("should create the test file, based on the name of the component", async function () {
+	it("should create the test file, based on the name of the component", async () => {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -53,7 +51,7 @@ describe("generateTestFile", function () {
 		assert.equal(getFileContentForTestFile(title), fileContent);
 	});
 
-	it("can create the test file with a custom extension, if a custom extension is passed", async function () {
+	it("can create the test file with a custom extension, if a custom extension is passed", async () => {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);

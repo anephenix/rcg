@@ -3,12 +3,15 @@ const expectedSASSContent = `
 	// TODO - put styling information here
 }`;
 
-const expectedSASSContentWithCustomCSS = (customCSS) => `
+const expectedSASSContentWithCustomCSS = (customCSS: string): string => `
 #my-test-component {
 	${customCSS}
 }`;
 
-const expectedComponentContentWithDom = (customDom, nextjsSassSupport) => {
+const expectedComponentContentWithDom = (
+	customDom: string | null,
+	nextjsSassSupport: boolean,
+): string => {
 	let id = `'my-test-component'`;
 	let nextjsStylesVariable = "";
 	let mod = "";
@@ -26,7 +29,7 @@ const expectedComponentContentWithDom = (customDom, nextjsSassSupport) => {
 import ${nextjsStylesVariable}'./MyTestComponent.${mod}scss';
 
 const MyTestComponent = () => (<div id=${id}${endDiv});
-			
+
 export default MyTestComponent;`;
 };
 
@@ -34,7 +37,7 @@ const expectedComponentContent = `
 import './MyTestComponent.scss';
 
 const MyTestComponent = () => (<div id='my-test-component' />);
-			
+
 export default MyTestComponent;`;
 
 const expectedTestContent = `
@@ -45,7 +48,7 @@ describe('MyTestComponent', () => {
 	test.todo('should do something');
 });`;
 
-module.exports = {
+export {
 	expectedSASSContent,
 	expectedSASSContentWithCustomCSS,
 	expectedComponentContent,

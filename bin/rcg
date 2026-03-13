@@ -1,15 +1,13 @@
 #!/usr/bin/env node
 
-// NPM Dependencies
-const path = require('path');
-const { program } = require('commander');
-const loadConfigFileIfExists = require('../lib/helpers/loadConfigFile');
-const {
-	createExampleConfigFile,
-} = require('../lib/helpers/generateConfigFile');
+import path from 'path';
+import { createRequire } from 'module';
+import { program } from 'commander';
+import loadConfigFileIfExists from '../dist/lib/helpers/loadConfigFile.js';
+import { createExampleConfigFile } from '../dist/lib/helpers/generateConfigFile.js';
+import generateComponent from '../dist/index.js';
 
-// File Dependencies
-const generateComponent = require('../index');
+const require = createRequire(import.meta.url);
 const packageJson = require('../package.json');
 
 const parseDirectory = (directory) => {

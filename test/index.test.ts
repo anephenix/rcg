@@ -1,25 +1,26 @@
-const assert = require("assert");
-const path = require("path");
+import assert from "assert";
+import path from "path";
+import { afterEach, beforeEach, describe, it } from "vitest";
 
-// File Dependencies
-const generateComponent = require("../index");
-const { exists, cleanup } = require("./helpers");
+import generateComponent from "../dist/index.js";
 
-describe("generateComponent", function () {
+import { cleanup, exists } from "./helpers";
+
+describe("generateComponent", () => {
 	const title = "MyTestComponent";
 	const folderName = "my-test-component";
 	const srcFolderPath = process.cwd();
 	const folderPath = path.join(process.cwd(), folderName);
 
-	beforeEach(async function () {
+	beforeEach(async () => {
 		await cleanup(folderPath);
 	});
 
-	afterEach(async function () {
+	afterEach(async () => {
 		await cleanup(folderPath);
 	});
 
-	it("should generate a boilerplate for a react component, given a name and a containing folder", async function () {
+	it("should generate a boilerplate for a react component, given a name and a containing folder", async () => {
 		const filesCreated = await generateComponent(title, srcFolderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);

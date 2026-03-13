@@ -1,64 +1,65 @@
 {
-  "name": "@anephenix/rcg",
-  "version": "0.0.25",
-  "description": "React Component Generator",
-  "main": "index.js",
-  "type": "commonjs",
-  "files": [
-    "bin",
-    "lib",
-    "index.js",
-    "README.md",
-    "SECURITY.md"
-  ],
-  "scripts": {
-    "cover": "npx nyc --reporter=lcov npm run test",
-    "format": "npx @biomejs/biome check .",
-    "lint": "npx @biomejs/biome check .",
-    "lint:package": "npx publint",
-    "prepare": "husky",
-    "prepare-patch-release": "npm run size && npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
-    "publish-patch-release": "npm run prepare-patch-release && git push origin master && git push --tags",
-    "size": "size-limit",
-    "test": "npx mocha test/**/*",
-    "update-changelog": "node scripts/update-changelog.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anephenix/rcg.git"
-  },
-  "homepage": "https://github.com/anephenix/rcg",
-  "bugs": {
-    "url": "https://github.com/anephenix/rcg/issues"
-  },
-  "keywords": [
-    "React",
-    "Component",
-    "Generator"
-  ],
-  "bin": "./bin/rcg",
-  "author": "Paul Jensen <paul@anephenix.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "@biomejs/biome": "2.4.6",
-    "@size-limit/file": "^12.0.0",
-    "globals": "^17.0.0",
-    "husky": "^9.1.7",
-    "jsdoc": "^4.0.0",
-    "mocha": "^11.7.5",
-    "nyc": "^18.0.0",
-    "publint": "^0.3.14",
-    "size-limit": "^12.0.0",
-    "size-limit-node-esbuild": "^0.4.0"
-  },
-  "dependencies": {
-    "commander": "^14.0.0",
-    "to-case": "^2.0.0"
-  },
-  "size-limit": [
-    {
-      "path": "index.js",
-      "limit": "10 kB"
-    }
-  ]
+	"name": "@anephenix/rcg",
+	"version": "0.0.25",
+	"description": "React Component Generator",
+	"types": "dist/index.d.ts",
+	"type": "module",
+	"files": [
+		"bin",
+		"dist",
+		"README.md",
+		"SECURITY.md"
+	],
+	"scripts": {
+		"build": "tsc",
+		"cover": "vitest run --coverage",
+		"format": "npx @biomejs/biome check . --write",
+		"lint": "npx @biomejs/biome check .",
+		"lint:package": "npx publint",
+		"prepare": "husky",
+		"prepare-patch-release": "npm run size && npm run update-changelog && git add CHANGELOG.md && git commit -m \"Updated changelog\" && npm version patch",
+		"publish-patch-release": "npm run prepare-patch-release && git push origin master && git push --tags",
+		"size": "size-limit",
+		"test": "tsc && vitest run",
+		"update-changelog": "node --experimental-strip-types scripts/update-changelog.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/anephenix/rcg.git"
+	},
+	"homepage": "https://github.com/anephenix/rcg",
+	"bugs": {
+		"url": "https://github.com/anephenix/rcg/issues"
+	},
+	"keywords": [
+		"React",
+		"Component",
+		"Generator"
+	],
+	"bin": "./bin/rcg",
+	"author": "Paul Jensen <paul@anephenix.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"@biomejs/biome": "2.4.6",
+		"@size-limit/file": "^12.0.0",
+		"@types/node": "^25.4.0",
+		"@vitest/coverage-v8": "^4.0.18",
+		"globals": "^17.0.0",
+		"husky": "^9.1.7",
+		"publint": "^0.3.14",
+		"size-limit": "^12.0.0",
+		"size-limit-node-esbuild": "^0.4.0",
+		"typescript": "^5.9.3",
+		"vitest": "^4.0.18"
+	},
+	"dependencies": {
+		"commander": "^14.0.0",
+		"to-case": "^2.0.0"
+	},
+	"size-limit": [
+		{
+			"path": "dist/index.js",
+			"limit": "10 kB"
+		}
+	]
 }

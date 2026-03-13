@@ -1,18 +1,18 @@
-// Dependencies
-const assert = require("assert");
-const path = require("path");
-const {
+import assert from "assert";
+import path from "path";
+import { afterEach, beforeEach, describe, it } from "vitest";
+import {
+	generateComponentFile,
+	getFileContentForComponent,
+} from "../../../dist/lib/generators/component.js";
+import {
 	expectedComponentContent,
 	expectedComponentContentWithDom,
-} = require("../../data");
-const {
-	getFileContentForComponent,
-	generateComponentFile,
-} = require("../../../lib/generators/component");
-const { exists, readFile, mkdir, checkAndRemove } = require("../../helpers");
+} from "../../data";
+import { checkAndRemove, exists, mkdir, readFile } from "../../helpers";
 
-describe("getFileContentForComponent", function () {
-	it("should return the file content for a React component", function () {
+describe("getFileContentForComponent", () => {
+	it("should return the file content for a React component", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		assert.equal(
@@ -21,7 +21,7 @@ describe("getFileContentForComponent", function () {
 		);
 	});
 
-	it("should allow for custom html to be passed into the component", function () {
+	it("should allow for custom html to be passed into the component", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const customDOM = "<div>Welcome here</div>";
@@ -39,7 +39,7 @@ describe("getFileContentForComponent", function () {
 		);
 	});
 
-	it("should enable the user to generate a component for NextJs built-in sass support", function () {
+	it("should enable the user to generate a component for NextJs built-in sass support", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const customDOM = null;
@@ -57,7 +57,7 @@ describe("getFileContentForComponent", function () {
 		);
 	});
 
-	it("should enable the user to generate a component for NextJs built-in sass support and custom DOM", function () {
+	it("should enable the user to generate a component for NextJs built-in sass support and custom DOM", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";
 		const customDOM = "<div>Welcome here</div>";
@@ -76,7 +76,7 @@ describe("getFileContentForComponent", function () {
 	});
 });
 
-describe("generateComponentFile", function () {
+describe("generateComponentFile", () => {
 	const title = "MyTestComponent";
 	const folderName = "my-test-component";
 	const folderPath = path.join(process.cwd(), folderName);
@@ -88,21 +88,21 @@ describe("generateComponentFile", function () {
 	);
 	const customDOM = "<div>Welcome here</div>";
 
-	beforeEach(async function () {
+	beforeEach(async () => {
 		return await checkAndRemove(folderPath, [
 			filePath,
 			filePathWithCustomJSExtension,
 		]);
 	});
 
-	afterEach(async function () {
+	afterEach(async () => {
 		return await checkAndRemove(folderPath, [
 			filePath,
 			filePathWithCustomJSExtension,
 		]);
 	});
 
-	it("should create the file for the React Component, based on the name", async function () {
+	it("should create the file for the React Component, based on the name", async () => {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -113,7 +113,7 @@ describe("generateComponentFile", function () {
 		assert.equal(getFileContentForComponent(title, folderName), fileContent);
 	});
 
-	it("should also create a file with custom DOM, if custom DOM is passed", async function () {
+	it("should also create a file with custom DOM, if custom DOM is passed", async () => {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
@@ -132,7 +132,7 @@ describe("generateComponentFile", function () {
 		);
 	});
 
-	it("can create the file with a custom extension, if a custom extension is passed", async function () {
+	it("can create the file with a custom extension, if a custom extension is passed", async () => {
 		await mkdir(folderPath);
 		const folderExists = await exists(folderPath);
 		assert(folderExists);
