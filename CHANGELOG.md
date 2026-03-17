@@ -1,5 +1,44 @@
 # CHANGELOG
 
+### 0.0.26 - Tuesday 17th March, 2026
+
+- Updated dependencies and applied linting fixes
+- Updated dependencies
+- Converted to typescript, ESModule format, and using vitest instead of mocha
+- Updated dependencies
+- Removed another unnecessary devDependency
+- Replaced eslint and prettier with biome
+- Updated dependencies
+- Merge pull request #258 from anephenix/dependabot/npm_and_yarn/nyc-18.0.0
+- Bump nyc from 17.1.0 to 18.0.0
+- Updated dependencies and versions in GitHub workflows
+- Merge pull request #256 from anephenix/dependabot/npm_and_yarn/globals-17.4.0
+- Merge pull request #257 from anephenix/dependabot/npm_and_yarn/publint-0.3.18
+- Bump publint from 0.3.17 to 0.3.18
+- Bump globals from 17.3.0 to 17.4.0
+- Merge pull request #254 from anephenix/dependabot/npm_and_yarn/multi-770cfcd984
+- Bump minimatch
+- Merge pull request #251 from anephenix/dependabot/npm_and_yarn/commander-14.0.3
+- Bump commander from 14.0.2 to 14.0.3
+- Merge pull request #247 from anephenix/dependabot/npm_and_yarn/globals-17.3.0
+- Bump globals from 17.1.0 to 17.3.0
+- Merge pull request #245 from anephenix/dependabot/npm_and_yarn/prettier-3.8.1
+- Merge pull request #246 from anephenix/dependabot/npm_and_yarn/publint-0.3.17
+- Merge pull request #244 from anephenix/dependabot/npm_and_yarn/globals-17.1.0
+- Bump publint from 0.3.16 to 0.3.17
+- Bump prettier from 3.8.0 to 3.8.1
+- Bump globals from 17.0.0 to 17.1.0
+- Merge pull request #243 from anephenix/dependabot/npm_and_yarn/lodash-4.17.23
+- Bump lodash from 4.17.21 to 4.17.23
+- Merge pull request #242 from anephenix/dependabot/npm_and_yarn/prettier-3.8.0
+- Merge pull request #241 from anephenix/dependabot/npm_and_yarn/babel/eslint-parser-7.28.6
+- Bump prettier from 3.7.4 to 3.8.0
+- Bump @babel/eslint-parser from 7.28.5 to 7.28.6
+- Merge pull request #239 from anephenix/dependabot/npm_and_yarn/eslint-plugin-jest-29.12.1
+- Merge pull request #240 from anephenix/dependabot/npm_and_yarn/globals-17.0.0
+- Bump globals from 16.5.0 to 17.0.0
+- Bump eslint-plugin-jest from 29.11.1 to 29.12.1
+
 ### 0.0.25 - Sunday 4th January, 2026
 
 - Tweaks for new publish workflow
