@@ -35,4 +35,4 @@ const generateStyleFile = async ({
 	return await createFile(folderPath, fileName, fileContent);
 };
 
-export { getFileContentForStyleFile, generateStyleFile };
+export { generateStyleFile, getFileContentForStyleFile };

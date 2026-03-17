@@ -54,14 +54,14 @@ const checkAndRemove = async (
 };
 
 export {
-	exists,
-	writeFile,
-	readFile,
-	unlink,
-	mkdir,
-	rmdir,
-	readdir,
-	exec,
-	cleanup,
 	checkAndRemove,
+	cleanup,
+	exec,
+	exists,
+	mkdir,
+	readdir,
+	readFile,
+	rmdir,
+	unlink,
+	writeFile,
 };

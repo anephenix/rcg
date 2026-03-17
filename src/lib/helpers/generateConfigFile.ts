@@ -14,4 +14,4 @@ export default {
 	await fs.writeFile(exampleConfigFilePath, exampleConfig);
 };
 
-export { exampleConfigFilePath, createExampleConfigFile };
+export { createExampleConfigFile, exampleConfigFilePath };

@@ -28,4 +28,4 @@ const generateTestFile = async ({
 	return await createFile(folderPath, fileName, fileContent);
 };
 
-export { getFileContentForTestFile, generateTestFile };
+export { generateTestFile, getFileContentForTestFile };

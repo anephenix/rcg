@@ -83,4 +83,4 @@ const generateComponentFile = async ({
 	return await createFile(folderPath, fileName, fileContent);
 };
 
-export { getFileContentForComponent, generateComponentFile };
+export { generateComponentFile, getFileContentForComponent };

@@ -49,9 +49,9 @@ describe('MyTestComponent', () => {
 });`;
 
 export {
-	expectedSASSContent,
-	expectedSASSContentWithCustomCSS,
 	expectedComponentContent,
 	expectedComponentContentWithDom,
+	expectedSASSContent,
+	expectedSASSContentWithCustomCSS,
 	expectedTestContent,
 };
