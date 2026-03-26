@@ -3,37 +3,37 @@
 
 name: Node.js CI
 permissions:
-    contents: read
+  contents: read
 
 on:
-    push:
-        branches: [master]
-    pull_request:
-        branches: [master]
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+
+    strategy:
+      matrix:
+        node-version: [24.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
         env:
-            CI: true
-
-        strategy:
-            matrix:
-                node-version: [24.x]
-                # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-        steps:
-            - uses: actions/checkout@v4
-            - name: Use Node.js ${{ matrix.node-version }}
-              env:
-                  CI: true
-              uses: actions/setup-node@v4
-              with:
-                  node-version: ${{ matrix.node-version }}
-                  cache: 'npm'
-            - run: npm i
-            - run: npm run cover
-              if: github.event_name != 'pull_request'
-            - run: npx nyc report --reporter=lcov
-              if: github.event_name != 'pull_request'
-            - run: node scripts/generateConfigFile.js
+          CI: true
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm i
+      - run: npm run cover
+        if: github.event_name != 'pull_request'
+      - run: npx nyc report --reporter=lcov
+        if: github.event_name != 'pull_request'
+      - run: node scripts/generateConfigFile.ts
