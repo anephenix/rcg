@@ -1,5 +1,27 @@
 # CHANGELOG
 
+### 0.0.27 - Wednesday 8th April, 2026
+
+- Updated dependencies and applied some stricter typing
+- Merge pull request #272 from anephenix/dependabot/npm_and_yarn/vite-8.0.5
+- Merge pull request #271 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.10
+- Merge pull request #270 from anephenix/dependabot/npm_and_yarn/types/node-25.5.2
+- Bump vite from 8.0.3 to 8.0.5
+- Bump @biomejs/biome from 2.4.9 to 2.4.10
+- Bump @types/node from 25.5.0 to 25.5.2
+- Merge pull request #267 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.9
+- Merge pull request #269 from anephenix/dependabot/npm_and_yarn/typescript-6.0.2
+- Merge pull request #268 from anephenix/dependabot/npm_and_yarn/vitest/coverage-v8-4.1.2
+- Bump typescript from 5.9.3 to 6.0.2
+- Bump @vitest/coverage-v8 from 4.1.0 to 4.1.2
+- Bump @biomejs/biome from 2.4.8 to 2.4.9
+- Merge pull request #265 from anephenix/dependabot/npm_and_yarn/picomatch-4.0.4
+- Bump picomatch from 4.0.3 to 4.0.4
+- Merge pull request #264 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.4.8
+- Some more fixes
+- Some fixes
+- Bump @biomejs/biome from 2.4.7 to 2.4.8
+
 ### 0.0.26 - Tuesday 17th March, 2026
 
 - Updated dependencies and applied linting fixes
