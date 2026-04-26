@@ -70,6 +70,30 @@ npx rcg NavBar --cssExtension=style.js
 
 By default, it generates a scss file. This will likely change in the future to a default pattern of css-in-js
 
+To generate a component with props, use the `--props` flag with space-separated `name:type` pairs:
+
+```
+npx rcg Item --props title:string description:string available:boolean
+```
+
+For a JavaScript component this generates destructured props in the function signature:
+
+```javascript
+const Item = ({ title, description, available }) => (<div id='item' />);
+```
+
+For a TypeScript component (using `--jsExtension tsx` or `--jsExtension ts`), it also generates a TypeScript interface:
+
+```typescript
+interface ItemProps {
+    title: string;
+    description: string;
+    available: boolean;
+}
+
+const Item = ({ title, description, available }: ItemProps) => (<div id='item' />);
+```
+
 #### via NPM
 
 You can load it this way:

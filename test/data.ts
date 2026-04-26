@@ -48,9 +48,34 @@ describe('MyTestComponent', () => {
 	test.todo('should do something');
 });`;
 
+interface PropDefinition {
+	name: string;
+	type: string;
+}
+
+const expectedComponentContentWithProps = (
+	props: PropDefinition[],
+	isTypeScript: boolean,
+): string => {
+	const propNames = props.map((p) => p.name).join(", ");
+	const propsArg = isTypeScript
+		? `{ ${propNames} }: MyTestComponentProps`
+		: `{ ${propNames} }`;
+	const propsInterface = isTypeScript
+		? `\ninterface MyTestComponentProps {\n${props.map((p) => `\t${p.name}: ${p.type};`).join("\n")}\n}\n`
+		: "";
+	return `
+import './MyTestComponent.scss';
+${propsInterface}
+const MyTestComponent = (${propsArg}) => (<div id='my-test-component' />);
+
+export default MyTestComponent;`;
+};
+
 export {
 	expectedComponentContent,
 	expectedComponentContentWithDom,
+	expectedComponentContentWithProps,
 	expectedSASSContent,
 	expectedSASSContentWithCustomCSS,
 	expectedTestContent,

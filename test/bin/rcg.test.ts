@@ -241,6 +241,55 @@ ${homeDir}/components/my-test-component/MyTestComponent.test.jsx
 		});
 	});
 
+	describe("--props", () => {
+		const title = "MyTestComponent";
+		const folderName = "my-test-component";
+		const folderPath = path.join(
+			process.cwd(),
+			"src",
+			"components",
+			folderName,
+		);
+
+		beforeEach(async () => {
+			seed(["src", "components"]);
+		});
+
+		afterEach(async () => {
+			cleanup(path.join("src", "components"));
+		});
+
+		it("should create a JS component with destructured props when props are specified", async () => {
+			const command = `./bin/rcg ${title} --props title:string description:string available:boolean`;
+			const { stderr } = await exec(command);
+			assert.equal(stderr, "");
+			const componentFile = path.join(folderPath, `${title}.js`);
+			const componentFileContent = await readFile(componentFile, "utf8");
+			assert(
+				componentFileContent.includes(
+					"const MyTestComponent = ({ title, description, available }) =>",
+				),
+			);
+		});
+
+		it("should create a TSX component with a TypeScript interface when props are specified with tsx extension", async () => {
+			const command = `./bin/rcg ${title} --jsExtension tsx --props title:string description:string available:boolean`;
+			const { stderr } = await exec(command);
+			assert.equal(stderr, "");
+			const componentFile = path.join(folderPath, `${title}.tsx`);
+			const componentFileContent = await readFile(componentFile, "utf8");
+			assert(componentFileContent.includes("interface MyTestComponentProps {"));
+			assert(componentFileContent.includes("\ttitle: string;"));
+			assert(componentFileContent.includes("\tdescription: string;"));
+			assert(componentFileContent.includes("\tavailable: boolean;"));
+			assert(
+				componentFileContent.includes(
+					"const MyTestComponent = ({ title, description, available }: MyTestComponentProps) =>",
+				),
+			);
+		});
+	});
+
 	describe("universal behaviour", () => {
 		const title = "MyTestComponent";
 		const folderName = "my-test-component";

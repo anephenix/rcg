@@ -14,6 +14,16 @@ const parseDirectory = (directory) => {
   return path.resolve(process.cwd(), directory);
 };
 
+const parseProps = (props) => {
+  if (!props || props.length === 0) return null;
+  return props.map((prop) => {
+    const colonIndex = prop.indexOf(":");
+    const name = prop.substring(0, colonIndex);
+    const type = prop.substring(colonIndex + 1);
+    return { name, type };
+  });
+};
+
 const mainAction = async (componentName) => {
   const options = program.opts();
   const configFileOptions = await loadConfigFileIfExists();
@@ -28,6 +38,7 @@ const mainAction = async (componentName) => {
     options.cssExtension || configFileOptions.cssExtension || "scss";
   const nextjsSassSupport =
     options.nextjsSassSupport || configFileOptions.nextjsSassSupport || false;
+  const customProps = parseProps(options.props);
 
   const filesCreated = await generateComponent(
     componentName,
@@ -37,6 +48,7 @@ const mainAction = async (componentName) => {
     customJSExtension,
     customCssExtension,
     nextjsSassSupport,
+    customProps,
   );
 
   console.log("Created files:\n");
@@ -64,6 +76,10 @@ program
     "-n,--nextjsSassSupport",
     "enable Nextjs built-in SASS Support for the component",
     false,
+  )
+  .option(
+    "-p,--props <props...>",
+    "props for the component in name:type format (e.g. title:string available:boolean)",
   )
   .arguments("<componentName>")
   .action(mainAction)

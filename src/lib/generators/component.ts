@@ -6,6 +6,11 @@ interface GetDOMOptions {
 	customDOM?: string | null;
 }
 
+export interface ComponentProp {
+	name: string;
+	type: string;
+}
+
 const getDOM = ({
 	folderName,
 	nextjsSassSupport,
@@ -19,21 +24,48 @@ const getDOM = ({
 	return element;
 };
 
+const isTypeScriptExtension = (ext?: string | null): boolean =>
+	ext === "ts" || ext === "tsx";
+
+const buildPropsInterface = (props: ComponentProp[], title: string): string => {
+	const lines = props.map((p) => `\t${p.name}: ${p.type};`).join("\n");
+	return `\ninterface ${title}Props {\n${lines}\n}\n`;
+};
+
+const buildPropsArg = (
+	props: ComponentProp[],
+	title: string,
+	isTypeScript: boolean,
+): string => {
+	const names = props.map((p) => p.name).join(", ");
+	return isTypeScript ? `{ ${names} }: ${title}Props` : `{ ${names} }`;
+};
+
 interface FileContentTemplateOptions {
 	importStatement: string;
 	title: string;
 	element: string;
+	customProps?: ComponentProp[] | null;
+	isTypeScript?: boolean;
 }
 
 const fileContentTemplate = ({
 	importStatement,
 	title,
 	element,
+	customProps,
+	isTypeScript,
 }: FileContentTemplateOptions): string => {
+	const hasProps = customProps && customProps.length > 0;
+	const propsInterface =
+		hasProps && isTypeScript ? buildPropsInterface(customProps, title) : "";
+	const propsArg = hasProps
+		? buildPropsArg(customProps, title, isTypeScript ?? false)
+		: "";
 	return `
 ${importStatement}
-
-const ${title} = () => (${element});
+${propsInterface}
+const ${title} = (${propsArg}) => (${element});
 
 export default ${title};`;
 };
@@ -44,12 +76,20 @@ const getFileContentForComponent = (
 	customDOM?: string | null,
 	customCssExtension?: string | null,
 	nextjsSassSupport?: boolean | null,
+	customProps?: ComponentProp[] | null,
+	customJSExtension?: string | null,
 ): string => {
 	const element = getDOM({ folderName, nextjsSassSupport, customDOM });
 	const nextJsStylesVariable = nextjsSassSupport ? "styles from " : "";
 	const fileExtension = nextjsSassSupport ? "module.scss" : customCssExtension;
 	const importStatement = `import ${nextJsStylesVariable}'./${title}.${fileExtension}';`;
-	return fileContentTemplate({ importStatement, title, element });
+	return fileContentTemplate({
+		importStatement,
+		title,
+		element,
+		customProps,
+		isTypeScript: isTypeScriptExtension(customJSExtension),
+	});
 };
 
 interface GenerateComponentFileOptions {
@@ -60,6 +100,7 @@ interface GenerateComponentFileOptions {
 	customJSExtension?: string | null;
 	customCssExtension?: string | null;
 	nextjsSassSupport?: boolean | null;
+	customProps?: ComponentProp[] | null;
 }
 
 const generateComponentFile = async ({
@@ -70,6 +111,7 @@ const generateComponentFile = async ({
 	customJSExtension,
 	customCssExtension,
 	nextjsSassSupport,
+	customProps,
 }: GenerateComponentFileOptions): Promise<string> => {
 	const jsExtension = customJSExtension || "js";
 	const fileName = `${title}.${jsExtension}`;
@@ -79,6 +121,8 @@ const generateComponentFile = async ({
 		customDOM,
 		customCssExtension,
 		nextjsSassSupport,
+		customProps,
+		customJSExtension,
 	);
 	return await createFile(folderPath, fileName, fileContent);
 };
