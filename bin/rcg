@@ -1,82 +1,75 @@
 #!/usr/bin/env node
 
-import path from 'path';
-import { createRequire } from 'module';
-import { program } from 'commander';
-import loadConfigFileIfExists from '../dist/lib/helpers/loadConfigFile.js';
-import { createExampleConfigFile } from '../dist/lib/helpers/generateConfigFile.js';
-import generateComponent from '../dist/index.js';
+import path from "path";
+import { createRequire } from "module";
+import { program } from "commander";
+import loadConfigFileIfExists from "../dist/lib/helpers/loadConfigFile.js";
+import { createExampleConfigFile } from "../dist/lib/helpers/generateConfigFile.js";
+import generateComponent from "../dist/index.js";
 
 const require = createRequire(import.meta.url);
-const packageJson = require('../package.json');
+const packageJson = require("../package.json");
 
 const parseDirectory = (directory) => {
-	return path.resolve(process.cwd(), directory);
+  return path.resolve(process.cwd(), directory);
 };
 
 const mainAction = async (componentName) => {
-	const options = program.opts();
-	const configFileOptions = await loadConfigFileIfExists();
-	const defaultSrcFolderPath = path.join(process.cwd(), 'src', 'components');
-	const srcFolderPath =
-		options.directory ||
-		configFileOptions.directory ||
-		defaultSrcFolderPath;
-	const customDOM = options.dom || null;
-	const customCSS = options.css || null;
-	const customJSExtension =
-		options.jsExtension || configFileOptions.jsExtension || null;
-	const customCssExtension =
-		options.cssExtension || configFileOptions.cssExtension || 'scss';
-	const nextjsSassSupport =
-		options.nextjsSassSupport ||
-		configFileOptions.nextjsSassSupport ||
-		false;
+  const options = program.opts();
+  const configFileOptions = await loadConfigFileIfExists();
+  const defaultSrcFolderPath = path.join(process.cwd(), "src", "components");
+  const srcFolderPath =
+    options.directory || configFileOptions.directory || defaultSrcFolderPath;
+  const customDOM = options.dom || null;
+  const customCSS = options.css || null;
+  const customJSExtension =
+    options.jsExtension || configFileOptions.jsExtension || null;
+  const customCssExtension =
+    options.cssExtension || configFileOptions.cssExtension || "scss";
+  const nextjsSassSupport =
+    options.nextjsSassSupport || configFileOptions.nextjsSassSupport || false;
 
-	const filesCreated = await generateComponent(
-		componentName,
-		srcFolderPath,
-		customDOM,
-		customCSS,
-		customJSExtension,
-		customCssExtension,
-		nextjsSassSupport
-	);
+  const filesCreated = await generateComponent(
+    componentName,
+    srcFolderPath,
+    customDOM,
+    customCSS,
+    customJSExtension,
+    customCssExtension,
+    nextjsSassSupport,
+  );
 
-	console.log('Created files:\n');
-	filesCreated.map((c) => console.log(`${c}`));
+  console.log("Created files:\n");
+  filesCreated.map((c) => console.log(`${c}`));
 };
 
 program
-	.version(packageJson.version)
-	.option(
-		'-f, --directory <dir>',
-		'The directory to put the component in',
-		parseDirectory
-	)
-	.option(
-		'-d, --dom <html>',
-		'custom DOM content to embed into the component'
-	)
-	.option('-c, --css <css>', 'custom CSS content for the component')
-	.option(
-		'-j,--jsExtension <jsExtension>',
-		'custom JS extension for the component file'
-	)
-	.option(
-		'-s,--cssExtension <cssExtension>',
-		'custom CSS extension for the component style file'
-	)
-	.option(
-		'-n,--nextjsSassSupport',
-		'enable Nextjs built-in SASS Support for the component',
-		false
-	)
-	.arguments('<componentName>')
-	.action(mainAction)
-	.command('init')
-	.description('Create an example rcg.config.js file')
-	.action(createExampleConfigFile);
+  .version(packageJson.version)
+  .option(
+    "-f, --directory <dir>",
+    "The directory to put the component in",
+    parseDirectory,
+  )
+  .option("-d, --dom <html>", "custom DOM content to embed into the component")
+  .option("-c, --css <css>", "custom CSS content for the component")
+  .option(
+    "-j,--jsExtension <jsExtension>",
+    "custom JS extension for the component file",
+  )
+  .option(
+    "-s,--cssExtension <cssExtension>",
+    "custom CSS extension for the component style file",
+  )
+  .option(
+    "-n,--nextjsSassSupport",
+    "enable Nextjs built-in SASS Support for the component",
+    false,
+  )
+  .arguments("<componentName>")
+  .action(mainAction)
+  .command("init")
+  .description("Create an example rcg.config.js file")
+  .action(createExampleConfigFile);
 
 // Run the command
 program.parse();
