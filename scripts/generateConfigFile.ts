@@ -1,5 +1,5 @@
-import { createExampleConfigFile } from "../src/lib/helpers/generateConfigFile.ts";
+import { runInit } from "../dist/lib/helpers/generateConfigFile.js";
 
 (async () => {
-	await createExampleConfigFile();
+	await runInit({ yes: true });
 })();
