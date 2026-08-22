@@ -159,6 +159,16 @@ You can create an rcg.config.js file by running this command:
 npx rcg init
 ```
 
+This will ask you a few questions (which folder to generate components in, which JS file extension to use, and whether to use Next.js SASS module support) and write the answers to an rcg.config.js file.
+
+To skip the questions and generate the file with default values (useful in CI or scripts), pass the `--yes` flag:
+
+```
+npx rcg init --yes
+```
+
+If an rcg.config.js file already exists, you'll be asked to confirm before it gets overwritten (running with `--yes` will overwrite it without asking).
+
 ### Running Tests
 
 ```

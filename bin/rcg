@@ -4,7 +4,7 @@ import path from "path";
 import { createRequire } from "module";
 import { program } from "commander";
 import loadConfigFileIfExists from "../dist/lib/helpers/loadConfigFile.js";
-import { createExampleConfigFile } from "../dist/lib/helpers/generateConfigFile.js";
+import { runInit } from "../dist/lib/helpers/generateConfigFile.js";
 import generateComponent from "../dist/index.js";
 
 const require = createRequire(import.meta.url);
@@ -84,8 +84,13 @@ program
   .arguments("<componentName>")
   .action(mainAction)
   .command("init")
-  .description("Create an example rcg.config.js file")
-  .action(createExampleConfigFile);
+  .description("Create an rcg.config.js file, via an interactive Q&A")
+  .option(
+    "-y, --yes",
+    "skip the interactive prompts and use default values",
+    false,
+  )
+  .action((options) => runInit({ yes: options.yes }));
 
 // Run the command
 program.parse();

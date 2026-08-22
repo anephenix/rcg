@@ -10,8 +10,8 @@ import {
 	it,
 } from "vitest";
 import {
-	createExampleConfigFile,
 	exampleConfigFilePath,
+	runInit,
 } from "../../dist/lib/helpers/generateConfigFile.js";
 import { version } from "../../package.json";
 import { exec, exists, readdir, readFile, unlink } from "../helpers";
@@ -89,7 +89,7 @@ describe("rcg binary", () => {
 
 		beforeAll(async () => {
 			seed(["components"]);
-			await createExampleConfigFile();
+			await runInit({ yes: true });
 			const { stdout, stderr } = await exec(command);
 			recordedStdout = stdout;
 			recordedStderr = stderr;
