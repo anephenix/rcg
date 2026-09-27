@@ -1,6 +1,6 @@
 {
 	"name": "@anephenix/rcg",
-	"version": "0.0.28",
+	"version": "0.0.29",
 	"description": "React Component Generator",
 	"types": "dist/index.d.ts",
 	"type": "module",
