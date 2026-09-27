@@ -1,5 +1,35 @@
 # CHANGELOG
 
+### 0.0.29 - Sunday 27th September, 2026
+
+- Updated dependencies
+- Updated dependencies
+- Merge pull request #337 from anephenix/dependabot/npm_and_yarn/vitest/coverage-v8-5.0.1
+- Merge pull request #334 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.5.14
+- Bump @vitest/coverage-v8 from 5.0.0 to 5.0.1
+- Bump @biomejs/biome from 2.5.13 to 2.5.14
+- Merge pull request #332 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.5.13
+- Merge pull request #331 from anephenix/dependabot/npm_and_yarn/types/node-26.5.1
+- Bump @biomejs/biome from 2.5.12 to 2.5.13
+- Bump @types/node from 26.5.0 to 26.5.1
+- Merge pull request #329 from anephenix/dependabot/npm_and_yarn/vitest/coverage-v8-5.0.0
+- Merge branch 'master' into dependabot/npm_and_yarn/vitest/coverage-v8-5.0.0
+- updated dependencies
+- Merge pull request #330 from anephenix/dependabot/npm_and_yarn/globals-17.12.0
+- Merge pull request #328 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.5.12
+- Merge pull request #327 from anephenix/dependabot/npm_and_yarn/inquirer/prompts-8.7.1
+- Bump globals from 17.11.0 to 17.12.0
+- Bump @vitest/coverage-v8 from 4.1.11 to 5.0.0
+- Bump @biomejs/biome from 2.5.11 to 2.5.12
+- Bump @inquirer/prompts from 8.7.0 to 8.7.1
+- Merge pull request #325 from anephenix/dependabot/npm_and_yarn/biomejs/biome-2.5.11
+- Merge pull request #324 from anephenix/dependabot/npm_and_yarn/inquirer/prompts-8.7.0
+- Merge pull request #323 from anephenix/dependabot/npm_and_yarn/types/node-26.4.0
+- Bump @biomejs/biome from 2.5.9 to 2.5.11
+- Bump @inquirer/prompts from 8.6.0 to 8.7.0
+- Bump @types/node from 26.2.0 to 26.4.0
+- Removed an outdated coverage line
+
 ### 0.0.28 - Saturday 22nd August, 2026
 
 - Merge pull request #322 from anephenix/feature/interactive-init
